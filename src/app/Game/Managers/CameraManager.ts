@@ -1,6 +1,6 @@
 import * as BB from 'babylonjs';
 import SceneManager from './SceneManager';
-import Configuration from './Configuration';
+import Configuration from '../Configuration';
 
 /**
  * Main Scene of Game (Contains Babylon.js scene)

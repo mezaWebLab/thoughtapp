@@ -1,5 +1,5 @@
 import * as BB from 'babylonjs';
-import Engine from './Engine';
+import Engine from '../Engine';
 
 /**
  * Main Scene of Game (Contains Babylon.js scene)
