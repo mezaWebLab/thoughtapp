@@ -1,9 +1,7 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
-import Panel from "../App/UI/Login/Panel";
-import DefaultLayout from "../App/UI/Layout/Default";
+import Panel from "../app/UI/Login/Panel";
+import DefaultLayout from "../app/UI/Layout/Default";
 
 const Home: NextPage = () => {
   return (
