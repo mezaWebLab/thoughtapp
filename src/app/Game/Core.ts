@@ -6,6 +6,8 @@ import EnvironmentManager from "./Managers/EnvironmentManager";
 import DevTools from "./DevTools/DevTools";
 import ThoughtManager from "./Managers/ThoughtManager";
 import NetworkManager from "./Managers/NetworkManager";
+import EventManager from "./Managers/EventManager";
+import IOManager from "./Managers/IOManager";
 
 /**
  * Main class of the game. 
@@ -17,6 +19,8 @@ import NetworkManager from "./Managers/NetworkManager";
  * @param {CameraManager} cameraManager - the game's camera manager, manages camera logic
  * @param {EnvironmentManager} environmentManager - handles anything to do with the world's environment
  * @param {ThoughtManager} thoughtManager - the thought manager. manages anything to do with thought logic
+ * @param {EventManager} eventManager - IO manager is responsible for handling input and output controls
+ * @param {IOManager} ioManager - IO manager is responsible for handling input and output controls
  * @param {DevTools} devTools - the devtools module. contains various useful tools to be used during development
  */
 class Core {
@@ -28,6 +32,8 @@ class Core {
     environmentManager: EnvironmentManager;
     networkManager: NetworkManager;
     thoughtManager: ThoughtManager;
+    eventManager: EventManager;
+    ioManager: IOManager;
     devTools?: DevTools;
 
     constructor(canvas: HTMLCanvasElement) {
@@ -39,6 +45,8 @@ class Core {
         this.environmentManager = new EnvironmentManager(this.sceneManager);
         this.networkManager = new NetworkManager();
         this.thoughtManager = new ThoughtManager(this.sceneManager, this.networkManager);
+        this.eventManager = new EventManager(this.sceneManager, this.thoughtManager);
+        this.ioManager = new IOManager(this.sceneManager, this.eventManager);
         if (this.config.development.devTools) this.devTools = new DevTools(this.engine, this.sceneManager);
     }
 
@@ -48,7 +56,8 @@ class Core {
      */
     async init(): Promise<void> {
         this.engine.core.runRenderLoop(() => this.sceneManager.default.render());
-        this.thoughtManager.start();
+        this.thoughtManager.init();
+        this.ioManager.init();
         window.addEventListener("resize", () => this.engine.core.resize());
     }
 }

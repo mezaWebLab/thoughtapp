@@ -31,8 +31,8 @@ class ThoughtManager {
         this.utils = new ThoughtUtils();
     }
 
-    async start(): Promise<any> {
-        let rawThoughtData = await this.networkManager.fetchThoughts(),
+    async init(): Promise<any> {
+        let rawThoughtData = await this.networkManager.get(this.networkManager.config.routes.thoughts),
             configuredThoughts = [];
 
         for (let i = 0; i < rawThoughtData.length; i++) {
@@ -41,10 +41,6 @@ class ThoughtManager {
         
         this.createMany(configuredThoughts);
         this.renderAllPending();
-    }
-
-    createMany(thoughtData: Array<any>): void {
-        thoughtData.forEach(thought => this.thoughts.push(ThoughtFactory.create(thought)));
     }
 
     configureThought(rawThoughtData: any): ThoughtData {
@@ -57,6 +53,18 @@ class ThoughtManager {
         }
     }
 
+    getThought(where: any, fromCache: boolean = false) {
+        if (!fromCache) {
+
+        } else {
+            return this.thoughts.find(thought => { return thought.id === parseInt(where.id) });
+        }
+    }
+
+    createMany(thoughtData: Array<any>): void {
+        thoughtData.forEach(thought => this.thoughts.push(ThoughtFactory.create(thought)));
+    }
+
     renderAllPending(): void {
         this.thoughts.forEach(thought => {
             if (!thought.rendered) {
@@ -67,6 +75,8 @@ class ThoughtManager {
                 thought.mesh.position.x = this.utils.getRandomX();
                 thought.mesh.position.z = this.utils.getRandomZ();
                 thought.mesh.position.y = this.utils.getRandomY();
+                thought.mesh.isPickable = true;
+                thought.rendered = true;
             }
         });
     }

@@ -2,19 +2,20 @@ import Configuration from "../Configuration";
 import axios from "axios";
 
 class NetworkManager {
-    config: Configuration;
+    config: any;
 
     constructor() {
-        this.config = new Configuration();
+        const config = new Configuration();
+        this.config = config.network;
     }
 
-    async fetchThoughts(): Promise<any> {
-        const req = await axios.get(this.api(this.config.network.routes.thoughts));
+    async get(route: string): Promise<any> {
+        const req = await axios.get(this.api(route));
         return req.data;
     }
 
     api(route: string): string {
-        return this.config.network.apiUrl + route;
+        return this.config.apiUrl + route;
     } 
 }
 
