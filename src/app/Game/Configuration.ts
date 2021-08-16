@@ -26,7 +26,7 @@ class Configuration {
     private _camera = {
         default: {
             key: "DefaultCamera",
-            initialPosition: { x: -1, z: 0, y: 1 },
+            initialPosition: { x: 2.5, z: 2.5, y: 2.5 },
             attachControls: true
         }
     };
@@ -34,8 +34,8 @@ class Configuration {
     private _thoughts = {
         enabled: true,
         placement: {
-            max: { x: 15, z: 15, y: 15 },
-            min: { x: -15, z: 15, y: 15 }
+            max: { x: 5, z: 5, y: 5 },
+            min: { x: 0, z: 0, y: 0 }
         },
         baseDiameter: 0.075
     }
