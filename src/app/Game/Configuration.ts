@@ -18,7 +18,7 @@ class Configuration {
 
     private _development = {
         devTools: true,
-        showInspector: true,
+        showInspector: false,
         showAxis: true,
         axisSize: 10
     };
@@ -32,7 +32,12 @@ class Configuration {
     };
 
     private _thoughts = {
-        enabled: true
+        enabled: true,
+        placement: {
+            max: { x: 15, z: 15, y: 15 },
+            min: { x: -15, z: 15, y: 15 }
+        },
+        baseDiameter: 0.075
     }
 
     /**
