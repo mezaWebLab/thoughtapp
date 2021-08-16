@@ -5,6 +5,7 @@ import CameraManager from "./Managers/CameraManager";
 import EnvironmentManager from "./Managers/EnvironmentManager";
 import DevTools from "./DevTools/DevTools";
 import ThoughtManager from "./Managers/ThoughtManager";
+import NetworkManager from "./Managers/NetworkManager";
 
 /**
  * Main class of the game. 
@@ -26,6 +27,7 @@ class Core {
     cameraManager: CameraManager;
     environmentManager: EnvironmentManager;
     thoughtManager: ThoughtManager;
+    networkManager: NetworkManager;
     devTools?: DevTools;
 
     constructor(canvas: HTMLCanvasElement) {
@@ -36,6 +38,7 @@ class Core {
         this.cameraManager = new CameraManager(this.sceneManager.default);
         this.environmentManager = new EnvironmentManager(this.sceneManager);
         this.thoughtManager = new ThoughtManager(this.sceneManager);
+        this.networkManager = new NetworkManager();
         if (this.config.development.devTools) this.devTools = new DevTools(this.engine, this.sceneManager);
     }
 
@@ -43,10 +46,14 @@ class Core {
      * Initializes engine render loop and window events
      * @returns {void}
      */
-    public init(): void {
+    async init(): Promise<void> {
         this.engine.core.runRenderLoop(() => {
             this.sceneManager.default.render();
         });
+
+        const demoThoughts = await this.networkManager.fetchThoughts();
+        
+        await this.thoughtManager.createMany(demoThoughts);
 
         window.addEventListener("resize", () => this.engine.core.resize());
     }

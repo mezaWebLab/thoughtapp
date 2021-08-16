@@ -9,6 +9,13 @@ class Configuration {
         clearColor: "#000000"
     };
 
+    private _network = {
+        apiUrl: process.env.API_URL,
+        routes: {
+            thoughts: "/thoughts"
+        }
+    }
+
     private _development = {
         devTools: true,
         showInspector: true,
@@ -34,6 +41,14 @@ class Configuration {
      */
     get global() {
         return this._global;
+    }
+
+    /**
+     * Returns global settings
+     * @returns {_network}
+     */
+     get network() {
+        return this._network;
     }
 
     /**

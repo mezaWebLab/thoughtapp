@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "axios": "^0.21.1",
     "babylonjs": "^4.2.0",
     "next": "11.1.0",
     "node-sass": "^5.0.0",

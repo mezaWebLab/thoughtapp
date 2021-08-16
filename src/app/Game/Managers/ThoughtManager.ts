@@ -15,8 +15,11 @@ class ThoughtManager {
         this.thoughts = [];
     }
 
-    createAll(): void {
+    createMany(thoughtData: Array<any>): void {
+        console.log(thoughtData);
+        thoughtData.forEach(thought => {
 
+        });
     }
 }
 
