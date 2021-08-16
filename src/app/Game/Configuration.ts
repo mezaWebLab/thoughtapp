@@ -10,15 +10,23 @@ class Configuration {
     };
 
     private _development = {
-        showInspector: true
+        devTools: true,
+        showInspector: true,
+        showAxis: true,
+        axisSize: 10
     };
 
     private _camera = {
         default: {
             key: "DefaultCamera",
-            initialPosition: { x: 1, z: 1, y: 1 } 
+            initialPosition: { x: -1, z: 0, y: 1 },
+            attachControls: true
         }
     };
+
+    private _thoughts = {
+        enabled: true
+    }
 
     /**
      * Returns global settings
@@ -42,6 +50,14 @@ class Configuration {
      */
     get camera() {
         return this._camera;
+    }
+
+    /**
+     * Returns thoughts settings
+     * @returns {_thoughts}
+     */
+    get thoughts() {
+        return this._thoughts;
     }
 }
 

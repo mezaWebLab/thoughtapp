@@ -17,6 +17,8 @@ class CameraManager {
             new BB.Vector3(this.config.camera.default.initialPosition.x, this.config.camera.default.initialPosition.y, this.config.camera.default.initialPosition.z), 
             sceneManager.default
         );
+        this.default.setTarget(BB.Vector3.Zero());
+        this.default.attachControl(true);
     }
 }
 
