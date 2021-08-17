@@ -40,6 +40,13 @@ class Configuration {
         baseDiameter: 0.075
     }
 
+    private _objects = {
+        pivot: {
+            position: { x: 2.5, z: 2.5, y: 2.5 },
+            diamenter: 0.25
+        }
+    }
+
     /**
      * Returns global settings
      * @returns {_global}
@@ -78,6 +85,14 @@ class Configuration {
      */
     get thoughts() {
         return this._thoughts;
+    }
+
+    /**
+     * Returns object settings
+     * @returns {_objects}
+     */
+     get objects() {
+        return this._objects;
     }
 }
 

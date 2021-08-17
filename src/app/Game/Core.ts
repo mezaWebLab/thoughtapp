@@ -8,6 +8,7 @@ import ThoughtManager from "./Managers/ThoughtManager";
 import NetworkManager from "./Managers/NetworkManager";
 import EventManager from "./Managers/EventManager";
 import IOManager from "./Managers/IOManager";
+import ObjectManager from "./Managers/ObjectManager";
 
 /**
  * Main class of the game. 
@@ -31,6 +32,7 @@ class Core {
     cameraManager: CameraManager;
     environmentManager: EnvironmentManager;
     networkManager: NetworkManager;
+    objectManager: ObjectManager;
     thoughtManager: ThoughtManager;
     eventManager: EventManager;
     ioManager: IOManager;
@@ -44,7 +46,8 @@ class Core {
         this.cameraManager = new CameraManager(this.sceneManager.default);
         this.environmentManager = new EnvironmentManager(this.sceneManager);
         this.networkManager = new NetworkManager();
-        this.thoughtManager = new ThoughtManager(this.sceneManager, this.networkManager);
+        this.objectManager = new ObjectManager(this.sceneManager.default);
+        this.thoughtManager = new ThoughtManager(this.sceneManager, this.networkManager, this.objectManager);
         this.eventManager = new EventManager(this.sceneManager, this.thoughtManager);
         this.ioManager = new IOManager(this.sceneManager, this.eventManager);
         if (this.config.development.devTools) this.devTools = new DevTools(this.engine, this.sceneManager);

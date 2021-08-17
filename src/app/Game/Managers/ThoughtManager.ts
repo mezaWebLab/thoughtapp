@@ -6,6 +6,7 @@ import NetworkManager from "./NetworkManager";
 import Configuration from "../Configuration";
 import * as BB from "babylonjs";
 import ThoughtUtils from "../Utils/ThoughtUtils";
+import ObjectManager from "./ObjectManager";
 
 /**
  * Thought Manager class. responsible for managing thoughts and all their logic
@@ -19,14 +20,16 @@ class ThoughtManager {
     config: any;
     sceneManager: SceneManager;
     networkManager: NetworkManager;
+    objectManager: ObjectManager;
     thoughts: Array<Thought>;
     utils: ThoughtUtils;
 
-    constructor(sceneManager: SceneManager, networkManager: NetworkManager) {
+    constructor(sceneManager: SceneManager, networkManager: NetworkManager, objectManager: ObjectManager) {
         const config = new Configuration();
         this.config = config.thoughts;
         this.sceneManager = sceneManager;
         this.networkManager = networkManager;
+        this.objectManager = objectManager;
         this.thoughts = [];
         this.utils = new ThoughtUtils();
     }
@@ -62,7 +65,10 @@ class ThoughtManager {
     }
 
     createMany(thoughtData: Array<any>): void {
-        thoughtData.forEach(thought => this.thoughts.push(ThoughtFactory.create(thought)));
+        thoughtData.forEach(thought => {
+            this.thoughts.push(ThoughtFactory.create(thought));
+            this.objectManager.requestObject("pivot", { key: `thought-${ thought.id }-pivot` });
+        });
     }
 
     renderAllPending(): void {

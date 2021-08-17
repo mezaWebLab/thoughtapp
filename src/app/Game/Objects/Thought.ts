@@ -1,6 +1,7 @@
 import ThoughtData from "../Interfaces/ThoughtData";
 import Configuration from "../Configuration";
 import { Mesh } from "babylonjs";
+import Pivot from "./Pivot";
 
 /**
  * Main Thought class. Contains all logic related to thoughts 
@@ -14,6 +15,7 @@ class Thought implements ThoughtData {
     updated_at: Date;
     rendered: boolean;
     mesh?: Mesh;
+    pivotKey?: string;
 
     constructor(thoughtData: ThoughtData) {
         const config = new Configuration();
@@ -23,6 +25,7 @@ class Thought implements ThoughtData {
         this.created_at = thoughtData.created_at;
         this.updated_at = thoughtData.updated_at;
         this.rendered = thoughtData.rendered;
+        this.pivotKey = `thought-${ this.id }-pivot`;
     }
 }
 

@@ -17,6 +17,10 @@ class Axis {
         this.init();
     }
 
+    /**
+     * Initializes and creates axis meshes
+     * @returns {void}
+     */
     public init(): void {
 		var makeTextPlane = (text: any, color: any, size: any) => {
             var dynamicTexture = new BABYLON.DynamicTexture("DynamicTexture", 50, this.sceneManager.default, true);

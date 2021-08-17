@@ -6,7 +6,6 @@ interface ThoughtData {
     created_at: Date;
     updated_at: Date;
     rendered: boolean;
-    mesh?: Mesh;
 }
 
 export default ThoughtData;

@@ -1,5 +1,7 @@
 import Thought from "../Objects/Thought";
 import ThoughtData from "../Interfaces/ThoughtData";
+import ObjectManager from "../Managers/ObjectManager";
+import { Scene } from "babylonjs/scene";
 
 /**
  * Responsible for creating thoughts
