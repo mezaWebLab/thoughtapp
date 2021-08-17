@@ -9,6 +9,7 @@ import NetworkManager from "./Managers/NetworkManager";
 import EventManager from "./Managers/EventManager";
 import IOManager from "./Managers/IOManager";
 import ObjectManager from "./Managers/ObjectManager";
+import CoreAnimationManager from "./Managers/CoreAnimationManager";
 
 /**
  * Main class of the game. 
@@ -36,6 +37,7 @@ class Core {
     thoughtManager: ThoughtManager;
     eventManager: EventManager;
     ioManager: IOManager;
+    CoreAnimationManager: CoreAnimationManager;
     devTools?: DevTools;
 
     constructor(canvas: HTMLCanvasElement) {
@@ -50,6 +52,7 @@ class Core {
         this.thoughtManager = new ThoughtManager(this.sceneManager, this.networkManager, this.objectManager);
         this.eventManager = new EventManager(this.sceneManager, this.thoughtManager);
         this.ioManager = new IOManager(this.sceneManager, this.eventManager);
+        this.CoreAnimationManager = new CoreAnimationManager(this.sceneManager.default, this.objectManager);
         if (this.config.development.devTools) this.devTools = new DevTools(this.engine, this.sceneManager);
     }
 
@@ -58,7 +61,10 @@ class Core {
      * @returns {void}
      */
     async init(): Promise<void> {
-        this.engine.core.runRenderLoop(() => this.sceneManager.default.render());
+        this.engine.core.runRenderLoop(() => {
+            this.sceneManager.default.render();
+            this.CoreAnimationManager.run();
+        });
         this.thoughtManager.init();
         this.ioManager.init();
         window.addEventListener("resize", () => this.engine.core.resize());

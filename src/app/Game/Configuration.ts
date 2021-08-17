@@ -43,7 +43,7 @@ class Configuration {
     private _objects = {
         pivot: {
             position: { x: 2.5, z: 2.5, y: 2.5 },
-            diamenter: 0.25
+            diameter: 0.25
         }
     }
 

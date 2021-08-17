@@ -28,7 +28,13 @@ class ObjectManager {
         }
     }
 
+    getObjectByKey(key: string): any {
+        return this.objects.find(obj => { return obj.key === key });
+    }
 
+    getAll() {
+        return this.objects;
+    }
 }
 
 export default ObjectManager;

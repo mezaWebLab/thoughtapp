@@ -83,8 +83,15 @@ class ThoughtManager {
                 thought.mesh.position.y = this.utils.getRandomY();
                 thought.mesh.isPickable = true;
                 thought.rendered = true;
+                this.linkThoughtToPivot(thought, thought.pivotKey);
             }
         });
+    }
+
+    linkThoughtToPivot(thought: Thought, pivotKey: string): void {
+        const pivot = this.objectManager.getObjectByKey(pivotKey);
+        //@ts-ignore
+        thought.mesh.parent = pivot.mesh;
     }
 }
 

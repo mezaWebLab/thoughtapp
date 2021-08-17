@@ -15,7 +15,7 @@ class Thought implements ThoughtData {
     updated_at: Date;
     rendered: boolean;
     mesh?: Mesh;
-    pivotKey?: string;
+    pivotKey: string;
 
     constructor(thoughtData: ThoughtData) {
         const config = new Configuration();
