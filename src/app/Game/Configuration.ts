@@ -5,6 +5,13 @@
  * it merely stores it for initial loading.
  */
 class Configuration {
+    private _development = {
+        devTools: true,
+        showInspector: false,
+        showAxis: false,
+        axisSize: 10
+    };
+
     private _global = {
         clearColor: "#000000"
     };
@@ -16,17 +23,10 @@ class Configuration {
         }
     }
 
-    private _development = {
-        devTools: true,
-        showInspector: false,
-        showAxis: true,
-        axisSize: 10
-    };
-
     private _camera = {
         default: {
             key: "DefaultCamera",
-            initialPosition: { x: 2.5, z: 2.5, y: 2.5 },
+            initialPosition: { x: 5, z: 5, y: 5 },
             attachControls: true
         }
     };
@@ -34,22 +34,26 @@ class Configuration {
     private _thoughts = {
         enabled: true,
         placement: {
-            max: { x: 5, z: 5, y: 5 },
-            min: { x: 0, z: 0, y: 0 }
+            max: { x: 2.5, z: 2.5, y: 2.5 },
+            min: { x: -2.5, z: -2.5, y: -2.5 }
         },
         baseDiameter: 0.075
     }
 
     private _objects = {
         pivot: {
-            position: { x: 2.5, z: 2.5, y: 2.5 },
+            position: { x: 5, z: 5, y: 5 },
             diameter: 0.25
         }
     }
 
+    private _animations = {
+        thoughtRotationSpeed: 0.0025
+    }
+
     /**
      * Returns global settings
-     * @returns {_global}
+     * @returns {object}
      */
     get global() {
         return this._global;
@@ -57,7 +61,7 @@ class Configuration {
 
     /**
      * Returns global settings
-     * @returns {_network}
+     * @returns {object}
      */
      get network() {
         return this._network;
@@ -65,7 +69,7 @@ class Configuration {
 
     /**
      * Returns development settings
-     * @returns {_development}
+     * @returns {object}
      */
     get development() {
         return this._development;
@@ -73,7 +77,7 @@ class Configuration {
 
     /**
      * Returns global camera settings
-     * @returns {_camera} 
+     * @returns {object} 
      */
     get camera() {
         return this._camera;
@@ -81,7 +85,7 @@ class Configuration {
 
     /**
      * Returns thoughts settings
-     * @returns {_thoughts}
+     * @returns {object}
      */
     get thoughts() {
         return this._thoughts;
@@ -89,10 +93,18 @@ class Configuration {
 
     /**
      * Returns object settings
-     * @returns {_objects}
+     * @returns {object}
      */
      get objects() {
         return this._objects;
+    }
+
+    /**
+     * Returns animation settings
+     * @returns {object}
+     */
+     get animations() {
+        return this._animations;
     }
 }
 

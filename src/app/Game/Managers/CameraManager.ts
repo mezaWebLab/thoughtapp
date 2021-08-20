@@ -19,6 +19,7 @@ class CameraManager {
         );
         this.default.setTarget(BB.Vector3.Zero());
         this.default.attachControl(true);
+        this.default.minZ = 0;
     }
 }
 

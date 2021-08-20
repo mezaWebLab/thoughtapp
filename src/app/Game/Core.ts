@@ -9,11 +9,11 @@ import NetworkManager from "./Managers/NetworkManager";
 import EventManager from "./Managers/EventManager";
 import IOManager from "./Managers/IOManager";
 import ObjectManager from "./Managers/ObjectManager";
-import CoreAnimationManager from "./Managers/CoreAnimationManager";
+import AnimationManager from "./Managers/AnimationManager";
 
 /**
  * Main class of the game. 
- * Contains core data and logic of game.
+ * Creates all necessary moodules, initializes game logic and managers
  * @param {HTMLCanvasElement} canvas - the canvas element webgl attaches to
  * @param {Configuration} config - the game's global configuration
  * @param {Engine} engine - the game's engine. loads the babylon.js core engine
@@ -37,7 +37,7 @@ class Core {
     thoughtManager: ThoughtManager;
     eventManager: EventManager;
     ioManager: IOManager;
-    CoreAnimationManager: CoreAnimationManager;
+    animationManager: AnimationManager;
     devTools?: DevTools;
 
     constructor(canvas: HTMLCanvasElement) {
@@ -52,7 +52,7 @@ class Core {
         this.thoughtManager = new ThoughtManager(this.sceneManager, this.networkManager, this.objectManager);
         this.eventManager = new EventManager(this.sceneManager, this.thoughtManager);
         this.ioManager = new IOManager(this.sceneManager, this.eventManager);
-        this.CoreAnimationManager = new CoreAnimationManager(this.sceneManager.default, this.objectManager);
+        this.animationManager = new AnimationManager(this.sceneManager.default, this.objectManager);
         if (this.config.development.devTools) this.devTools = new DevTools(this.engine, this.sceneManager);
     }
 
@@ -63,7 +63,7 @@ class Core {
     async init(): Promise<void> {
         this.engine.core.runRenderLoop(() => {
             this.sceneManager.default.render();
-            this.CoreAnimationManager.run();
+            this.animationManager.run();
         });
         this.thoughtManager.init();
         this.ioManager.init();

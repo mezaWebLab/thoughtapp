@@ -1,7 +1,6 @@
 import ThoughtData from "../Interfaces/ThoughtData";
 import Configuration from "../Configuration";
 import { Mesh } from "babylonjs";
-import Pivot from "./Pivot";
 
 /**
  * Main Thought class. Contains all logic related to thoughts 

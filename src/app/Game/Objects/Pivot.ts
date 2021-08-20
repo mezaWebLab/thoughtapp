@@ -1,6 +1,7 @@
-import { Mesh, MeshBuilder, Scene, StandardMaterial, Color3 } from "babylonjs";
+import { TransformNode, Vector3, Mesh, MeshBuilder, Scene, StandardMaterial, Color3, Space } from "babylonjs";
 import Configuration from "../Configuration";
-import ObjectAnimationManager from "../Managers/ObjectAnimationManager";
+import CalcUtils from "../Utils/CalcUtils";
+import AnimationManager from "../Managers/AnimationManager";
 
 /**
  * Class representing the pivot point which thoughts rotate around
@@ -10,24 +11,25 @@ class Pivot {
     config: any;
     key: string;
     scene: Scene;
-    mesh: Mesh;
+    mesh: TransformNode;
+    angle: Vector3;
+    rotationSpeed: number;
 
     constructor(key: string, scene: Scene) {
         const config = new Configuration();
         this.config = config.objects.pivot;
         this.key = key;
         this.scene = scene;
-        this.mesh = MeshBuilder.CreateSphere(key, { diameter: this.config.diameter });
+        this.mesh = new TransformNode(key);
         this.mesh.position.x = this.config.position.x;
         this.mesh.position.y = this.config.position.y;
         this.mesh.position.z = this.config.position.z;
-        this.mesh.material = new StandardMaterial(`${ key }-material`, this.scene);
-        //@ts-ignore
-        this.mesh.material.emissiveColor = new Color3.FromHexString("#ff0000");
+        this.angle = CalcUtils.randomVector3();
+        this.rotationSpeed = AnimationManager.mainConfig.thoughtRotationSpeed;
     }
 
     runAnimations(): void {
-        ObjectAnimationManager.rotate(this.mesh);
+        this.mesh.rotate(this.angle, this.rotationSpeed, Space.WORLD);
     }
 }
 

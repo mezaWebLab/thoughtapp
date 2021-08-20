@@ -7,6 +7,7 @@ import Configuration from "../Configuration";
 import * as BB from "babylonjs";
 import ThoughtUtils from "../Utils/ThoughtUtils";
 import ObjectManager from "./ObjectManager";
+import CalcUtils from "../Utils/CalcUtils";
 
 /**
  * Thought Manager class. responsible for managing thoughts and all their logic
@@ -67,7 +68,7 @@ class ThoughtManager {
     createMany(thoughtData: Array<any>): void {
         thoughtData.forEach(thought => {
             this.thoughts.push(ThoughtFactory.create(thought));
-            this.objectManager.requestObject("pivot", { key: `thought-${ thought.id }-pivot` });
+            this.objectManager.createObject("pivot", { key: `thought-${ thought.id }-pivot` });
         });
     }
 

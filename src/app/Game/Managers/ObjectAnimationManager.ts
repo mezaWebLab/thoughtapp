@@ -1,8 +1,7 @@
 import { Mesh } from "babylonjs";
 
 class ObjectAnimationManager {
-    static rotate(mesh: Mesh) {
-        
+    static rotate(mesh: Mesh): void {
     }
 }
 
