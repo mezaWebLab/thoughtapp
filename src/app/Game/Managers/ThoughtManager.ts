@@ -51,6 +51,7 @@ class ThoughtManager {
         return {
             id: rawThoughtData.id,
             body: rawThoughtData.body,
+            hex: rawThoughtData.hex,
             created_at: rawThoughtData.created_at,
             updated_at: rawThoughtData.updated_at,
             rendered: false
@@ -78,7 +79,7 @@ class ThoughtManager {
                 thought.mesh = BB.MeshBuilder.CreateSphere(`thought-${ thought.id }`, { diameter: this.config.baseDiameter }, this.sceneManager.default);
                 thought.mesh.material = new BB.StandardMaterial(`thought-${ thought.id }-materiial`, this.sceneManager.default);
                 // @ts-ignore
-                thought.mesh.material.emissiveColor = new BB.Color3(1, 1, 1);
+                thought.mesh.material.emissiveColor = new BB.Color3.FromHexString(thought.hex);
                 thought.mesh.position.x = this.utils.getRandomX();
                 thought.mesh.position.z = this.utils.getRandomZ();
                 thought.mesh.position.y = this.utils.getRandomY();

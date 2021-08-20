@@ -17,6 +17,7 @@ class EnvironmentManager {
         this.sceneManager = scene;
         this.config = new Configuration();
         this.sceneManager.default.clearColor = BB.Color3.FromHexString(this.config.global.clearColor);
+        var gl = new BB.GlowLayer("glow", this.sceneManager.default);
     }
 }
 

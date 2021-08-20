@@ -1,3 +1,5 @@
-body {
-    
+canvas {
+    &:focus {
+        outline : none !important;
+    }
 }

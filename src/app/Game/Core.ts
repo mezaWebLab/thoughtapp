@@ -52,7 +52,7 @@ class Core {
         this.thoughtManager = new ThoughtManager(this.sceneManager, this.networkManager, this.objectManager);
         this.eventManager = new EventManager(this.sceneManager, this.thoughtManager);
         this.ioManager = new IOManager(this.sceneManager, this.eventManager);
-        this.animationManager = new AnimationManager(this.sceneManager.default, this.objectManager);
+        this.animationManager = new AnimationManager(this.sceneManager.default, this.objectManager, this.cameraManager);
         if (this.config.development.devTools) this.devTools = new DevTools(this.engine, this.sceneManager);
     }
 

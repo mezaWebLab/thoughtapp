@@ -27,15 +27,15 @@ class Configuration {
         default: {
             key: "DefaultCamera",
             initialPosition: { x: 5, z: 5, y: 5 },
-            attachControls: true
+            attachControls: false
         }
     };
 
     private _thoughts = {
         enabled: true,
         placement: {
-            max: { x: 2.5, z: 2.5, y: 2.5 },
-            min: { x: -2.5, z: -2.5, y: -2.5 }
+            max: { x: 2, z: 2, y: 2 },
+            min: { x: -2, z: -2, y: -2 }
         },
         baseDiameter: 0.075
     }
@@ -48,7 +48,7 @@ class Configuration {
     }
 
     private _animations = {
-        thoughtRotationSpeed: 0.0025
+        thoughtRotationSpeed: 0.0009
     }
 
     /**

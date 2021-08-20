@@ -1,5 +1,6 @@
 import { Scene } from "babylonjs";
 import Configuration from "../Configuration";
+import CameraManager from "./CameraManager";
 import ObjectManager from "./ObjectManager";
 
 /**
@@ -13,12 +14,14 @@ class AnimationManager {
     config: any;
     scene: Scene;
     objectManager: ObjectManager;
+    cameraManager: CameraManager;
 
-    constructor(scene: Scene, objectManager: ObjectManager) {
+    constructor(scene: Scene, objectManager: ObjectManager, cameraManager: CameraManager) {
         const config = new Configuration();
         this.config = config.animations;
         this.scene = scene;
         this.objectManager = objectManager;
+        this.cameraManager = cameraManager;
     }
 
     /**
@@ -26,6 +29,8 @@ class AnimationManager {
      * @returns {void}
      */
     run(): void  {
+        this.cameraManager.default.rotation.y += 0.0001;
+        this.cameraManager.default.rotation.x += 0.0001;
         const objects = this.objectManager.getAll();
         objects.forEach(object => object.runAnimations());
     }   
