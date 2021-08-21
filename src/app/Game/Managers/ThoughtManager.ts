@@ -58,7 +58,7 @@ class ThoughtManager {
         }
     }
 
-    getThought(where: any, fromCache: boolean = false) {
+    getThought(where: any, fromCache: boolean = true) {
         if (!fromCache) {
 
         } else {
@@ -80,9 +80,9 @@ class ThoughtManager {
                 thought.mesh.material = new BB.StandardMaterial(`thought-${ thought.id }-materiial`, this.sceneManager.default);
                 // @ts-ignore
                 thought.mesh.material.emissiveColor = new BB.Color3.FromHexString(thought.hex);
-                thought.mesh.position.x = this.utils.getRandomX();
-                thought.mesh.position.z = this.utils.getRandomZ();
-                thought.mesh.position.y = this.utils.getRandomY();
+                thought.mesh.position.x = thought.position.x;
+                thought.mesh.position.z = thought.position.z;
+                thought.mesh.position.y = thought.position.y;
                 thought.mesh.isPickable = true;
                 thought.rendered = true;
                 this.linkThoughtToPivot(thought, thought.pivotKey);

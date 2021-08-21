@@ -10,6 +10,7 @@ import EventManager from "./Managers/EventManager";
 import IOManager from "./Managers/IOManager";
 import ObjectManager from "./Managers/ObjectManager";
 import AnimationManager from "./Managers/AnimationManager";
+import DOMEvents from "./Interfaces/DOMEvents";
 
 /**
  * Main class of the game. 
@@ -28,6 +29,7 @@ import AnimationManager from "./Managers/AnimationManager";
 class Core {
     canvas: HTMLCanvasElement;
     config: Configuration;
+    DOMEvents: DOMEvents;
     engine: Engine;
     sceneManager: SceneManager;
     cameraManager: CameraManager;
@@ -40,9 +42,10 @@ class Core {
     animationManager: AnimationManager;
     devTools?: DevTools;
 
-    constructor(canvas: HTMLCanvasElement) {
+    constructor(canvas: HTMLCanvasElement, DOMEvents: DOMEvents) {
         this.canvas = canvas;
         this.config = new Configuration();
+        this.DOMEvents = DOMEvents; 
         this.engine = new Engine(this.canvas);
         this.sceneManager = new SceneManager(this.engine);
         this.cameraManager = new CameraManager(this.sceneManager.default);
@@ -50,9 +53,9 @@ class Core {
         this.networkManager = new NetworkManager();
         this.objectManager = new ObjectManager(this.sceneManager.default);
         this.thoughtManager = new ThoughtManager(this.sceneManager, this.networkManager, this.objectManager);
-        this.eventManager = new EventManager(this.sceneManager, this.thoughtManager);
+        this.animationManager = new AnimationManager(this.sceneManager.default, this.objectManager, this.cameraManager, this.thoughtManager, this.DOMEvents);
+        this.eventManager = new EventManager(this.sceneManager, this.thoughtManager, this.animationManager);
         this.ioManager = new IOManager(this.sceneManager, this.eventManager);
-        this.animationManager = new AnimationManager(this.sceneManager.default, this.objectManager, this.cameraManager);
         if (this.config.development.devTools) this.devTools = new DevTools(this.engine, this.sceneManager);
     }
 
@@ -63,7 +66,7 @@ class Core {
     async init(): Promise<void> {
         this.engine.core.runRenderLoop(() => {
             this.sceneManager.default.render();
-            this.animationManager.run();
+            this.animationManager.runCoreAnimations();
         });
         this.thoughtManager.init();
         this.ioManager.init();

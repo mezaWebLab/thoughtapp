@@ -18,7 +18,7 @@ class CameraManager {
             sceneManager.default
         );
         this.default.setTarget(BB.Vector3.Zero());
-        // this.default.attachControl(this.config.camera.default.attachControls);
+        if (this.config.camera.default.attachControls) this.default.attachControl(true);
         this.default.minZ = 0;
     }
 }

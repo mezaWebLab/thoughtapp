@@ -1,3 +1,4 @@
+import AnimationManager from "./AnimationManager";
 import SceneManager from "./SceneManager";
 import ThoughtManager from "./ThoughtManager";
 
@@ -9,10 +10,12 @@ import ThoughtManager from "./ThoughtManager";
 class EventManager {
     sceneManager: SceneManager;
     thoughtManager: ThoughtManager;
+    animationManager: AnimationManager;
 
-    constructor(sceneManager: SceneManager, thoughtManager: ThoughtManager) {
+    constructor(sceneManager: SceneManager, thoughtManager: ThoughtManager, animationManager: AnimationManager) {
         this.sceneManager = sceneManager;
         this.thoughtManager = thoughtManager;
+        this.animationManager = animationManager;
     }
 
     /**
@@ -35,8 +38,12 @@ class EventManager {
      * @returns {void}
      */
     onThoughtClick(thoughtMeshKey: string): void {
-        const thoughtId = thoughtMeshKey.split("-")[1];
-        console.log(this.thoughtManager.getThought({ id: thoughtId }, true));
+        const thoughtId = thoughtMeshKey.split("-")[1],
+            thought = this.thoughtManager.getThought({ id: thoughtId }, true);
+
+            // console.log(thought);
+        
+        this.animationManager.runAnimation("move-thought-to-camera", { thought });
     }
 }
 

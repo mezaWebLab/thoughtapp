@@ -14,6 +14,7 @@ class Pivot {
     mesh: TransformNode;
     angle: Vector3;
     rotationSpeed: number;
+    animated: boolean;
 
     constructor(key: string, scene: Scene) {
         const config = new Configuration();
@@ -26,10 +27,15 @@ class Pivot {
         this.mesh.position.z = this.config.position.z;
         this.angle = CalcUtils.randomVector3();
         this.rotationSpeed = AnimationManager.mainConfig.thoughtRotationSpeed;
+        this.animated = true;
     }
 
     runAnimations(): void {
-        this.mesh.rotate(this.angle, this.rotationSpeed, Space.WORLD);
+        if (this.animated) this.mesh.rotate(this.angle, this.rotationSpeed, Space.WORLD);
+    }
+
+    onSelect(): void {
+        this.animated = false;
     }
 }
 
