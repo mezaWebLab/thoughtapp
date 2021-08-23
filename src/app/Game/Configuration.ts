@@ -8,7 +8,7 @@ class Configuration {
     private _development = {
         devTools: true,
         showInspector: false,
-        showAxis: true,
+        showAxis: false,
         axisSize: 10
     };
 
@@ -27,7 +27,7 @@ class Configuration {
         default: {
             key: "DefaultCamera",
             initialPosition: { x: 5, z: 5, y: 5 },
-            attachControls: true
+            attachControls: false
         }
     };
 

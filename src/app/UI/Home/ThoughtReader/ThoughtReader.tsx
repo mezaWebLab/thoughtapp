@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import ColorUtils from "../../../Game/Utils/ColorUtils";
+import { useRouter } from "next/router";
 
 interface Props {
     thoughtData?: any;
@@ -7,10 +8,12 @@ interface Props {
 }
 
 export default function ThoughtReader(props: Props) {
-    const [state, setState] = useState({
+    const router = useRouter(),
+        [state, setState] = useState({
             height: "0px",
             width: "0px",
-            contentContainerWidth: "0px"
+            contentContainerWidth: "0px",
+            contentContainerHeight: "0px"
         }),
         handlers = {
             configure() {
@@ -19,7 +22,8 @@ export default function ThoughtReader(props: Props) {
                 setState({
                     height: diameter + "px",
                     width: diameter + "px",
-                    contentContainerWidth: diameter > window.innerWidth ? "90vw" : "90%"
+                    contentContainerWidth: diameter > window.innerWidth ? "90vw" : "50%",
+                    contentContainerHeight: diameter > window.innerWidth ? "70vh" : "80vh"
                 });
             }
         }
@@ -39,16 +43,18 @@ export default function ThoughtReader(props: Props) {
                     boxShadow: `0px 0px 50px 34px ${ props.thoughtData.hex }` }}
                 className="thought-wrapper">
                 <div 
-                    style={{ width: state.contentContainerWidth }}
+                    style={{ width: state.contentContainerWidth, height: state.contentContainerHeight }}
                     className="thought-content">
                     <div className="top-menu">
-                        <img src="/thought-reader/left-arrow.svg" />
+                        <button onClick={() => router.push("/")}>
+                            <img src="/thought-reader/left-arrow.svg" />
+                        </button>
                     </div>
                     <div className="header">
 
                     </div>
                     <div className="body">
-
+                        {props.thoughtData.body}
                     </div>
                     <div className="footer">
 
