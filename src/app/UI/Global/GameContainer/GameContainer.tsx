@@ -17,6 +17,8 @@ function GameContainer(props: Props) {
                 onThoughtClick: props.onThoughtClick
             });
 
+        console.log(game);
+
         game.init();
     }, []);
 

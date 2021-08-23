@@ -25,6 +25,10 @@ class NetworkManager {
         return req.data;
     }
 
+    async fetchThoughtById(id: number): Promise<any> {
+        return await this.get("/thought-by-id?id=" + id);
+    }
+
     /**
      * Returns api URL
      * @param route 
