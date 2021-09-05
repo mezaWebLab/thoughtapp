@@ -54,7 +54,7 @@ class Core {
         this.objectManager = new ObjectManager(this.sceneManager.default);
         this.thoughtManager = new ThoughtManager(this.sceneManager, this.networkManager, this.objectManager);
         this.animationManager = new AnimationManager(this.sceneManager.default, this.objectManager, this.cameraManager, this.thoughtManager, this.DOMEvents);
-        this.eventManager = new EventManager(this.sceneManager, this.thoughtManager, this.animationManager);
+        this.eventManager = new EventManager(this.sceneManager, this.thoughtManager, this.animationManager, this.cameraManager);
         this.ioManager = new IOManager(this.sceneManager, this.eventManager);
         if (this.config.development.devTools) this.devTools = new DevTools(this.engine, this.sceneManager);
     }

@@ -1,12 +1,14 @@
+// @ts-nocheck
+
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Panel from "../app/UI/Login/Panel";
 import DefaultLayout from "../app/UI/Layout/Default";
+import { useEffect } from "react";
 
 const Home: NextPage = () => {
-  return (
-    <DefaultLayout>
-        <div className="home">
+    return (
+        <DefaultLayout>
             <Head>
                 <title>Home</title>
                 <meta 
@@ -15,13 +17,17 @@ const Home: NextPage = () => {
                 <link 
                     rel="icon" 
                     href="/favicon.ico" />
+                <script 
+                    src="/lib/hammer.js"
+                    type="text/javascript" />
             </Head>
-            <main>
-                <Panel />
-            </main>
-        </div>
-    </DefaultLayout>
-  );
+            <div className="home">
+                <main>
+                    <Panel />
+                </main>
+            </div>
+        </DefaultLayout>
+    );
 }
 
 export default Home

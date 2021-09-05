@@ -1,6 +1,3 @@
-import GameContainer from "../Global/GameContainer/GameContainer";
-import ThoughtReader from "../Home/ThoughtReader/ThoughtReader";
-import { useState } from "react";
 import { useRouter } from 'next/router'
 
 /**
@@ -9,8 +6,6 @@ import { useRouter } from 'next/router'
  * @returns {JSX}
  */
 export default function DefaultLayout(props: any) {
-    const router = useRouter();
-
     return (
         <div className="default-layout">
             {props.children}

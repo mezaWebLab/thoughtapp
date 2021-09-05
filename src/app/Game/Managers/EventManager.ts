@@ -1,4 +1,5 @@
 import AnimationManager from "./AnimationManager";
+import CameraManager from "./CameraManager";
 import SceneManager from "./SceneManager";
 import ThoughtManager from "./ThoughtManager";
 
@@ -11,11 +12,13 @@ class EventManager {
     sceneManager: SceneManager;
     thoughtManager: ThoughtManager;
     animationManager: AnimationManager;
+    cameraManager: CameraManager;
 
-    constructor(sceneManager: SceneManager, thoughtManager: ThoughtManager, animationManager: AnimationManager) {
+    constructor(sceneManager: SceneManager, thoughtManager: ThoughtManager, animationManager: AnimationManager, cameraManager: CameraManager) {
         this.sceneManager = sceneManager;
         this.thoughtManager = thoughtManager;
         this.animationManager = animationManager;
+        this.cameraManager = cameraManager;
     }
 
     /**
@@ -29,6 +32,9 @@ class EventManager {
             case "thought-click":
                 this.onThoughtClick(data);
             break;
+            case "swipe":
+                this.onSwipe(data);
+            break;
         }
     }
 
@@ -41,9 +47,18 @@ class EventManager {
         const thoughtId = thoughtMeshKey.split("-")[1],
             thought = this.thoughtManager.getThought({ id: thoughtId }, true);
 
-            // console.log(thought);
-        
         this.animationManager.runAnimation("move-thought-to-camera", { thought });
+    }
+
+    /**
+     * Handlers mobile touch swipe event
+     * @param {any} swipeData - the swipe data object received from library (hammer.js)
+     */
+    onSwipe(swipeData: any): void {
+        console.log("swiping!");
+        console.log(swipeData);
+        this.cameraManager.default.rotation.x += swipeData.velocityX / 4;
+        this.cameraManager.default.rotation.y += swipeData.velocityY / 4;
     }
 }
 
