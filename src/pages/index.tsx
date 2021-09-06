@@ -4,7 +4,6 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import Panel from "../app/UI/Login/Panel";
 import DefaultLayout from "../app/UI/Layout/Default";
-import { useEffect } from "react";
 
 const Home: NextPage = () => {
     return (
@@ -17,9 +16,7 @@ const Home: NextPage = () => {
                 <link 
                     rel="icon" 
                     href="/favicon.ico" />
-                <script 
-                    src="/lib/hammer.js"
-                    type="text/javascript" />
+                <script src="https://cdn.jsdelivr.net/npm/interactjs/dist/interact.min.js"></script>
             </Head>
             <div className="home">
                 <main>

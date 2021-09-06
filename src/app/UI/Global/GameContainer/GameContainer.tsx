@@ -16,16 +16,6 @@ function GameContainer(props: Props) {
             game = new Game(canvas, { onThoughtClick: props.onThoughtClick });
 
         game.init();
-
-        // Initialize hammer JS. 
-        // This library handles touch events
-        // @ts-ignore
-        const hammer = new Hammer(document.getElementById("game-canvas"), {});
-        // @ts-ignore
-        hammer.get("pan").set({ direction: Hammer.DIRECTION_ALL });
-        // @ts-ignore
-        hammer.get("swipe").set({ direction: Hammer.DIRECTION_ALL, threshold: 0 });
-        hammer.on("swipe", (ev: any) => game.eventManager.emit("swipe", { velocityX: ev.velocityX, velocityY: ev.velocityY }));
     }, []);
 
     return (

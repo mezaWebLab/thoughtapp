@@ -7,6 +7,8 @@ import ThoughtManager from "./ThoughtManager";
  * Class responsible for handling game events
  * @param {SceneManager} sceneManager - the game's scene manager
  * @param {ThoughtManager} thoughtManager - the game's thought manager
+ * @param {AnimationManager} animationManager - the animation manager
+ * @param {CameraManager} cameraManager - the camera manager
  */
 class EventManager {
     sceneManager: SceneManager;
@@ -19,6 +21,17 @@ class EventManager {
         this.thoughtManager = thoughtManager;
         this.animationManager = animationManager;
         this.cameraManager = cameraManager;
+
+        // @ts-ignore
+        interact(document.getElementById("game-canvas"))
+            .draggable({
+                inertia: true,
+                listeners: {
+                    move: (e: any) => {
+                        this.emit("swipe", { x: e.delta.x, y: e.delta.y });
+                    }
+                }
+            });
     }
 
     /**
@@ -55,10 +68,8 @@ class EventManager {
      * @param {any} swipeData - the swipe data object received from library (hammer.js)
      */
     onSwipe(swipeData: any): void {
-        console.log("swiping!");
-        console.log(swipeData);
-        this.cameraManager.default.rotation.x += swipeData.velocityX / 4;
-        this.cameraManager.default.rotation.y += swipeData.velocityY / 4;
+        this.cameraManager.default.rotation.x += -swipeData.y / 500;
+        this.cameraManager.default.rotation.y += -swipeData.x / 500;
     }
 }
 
