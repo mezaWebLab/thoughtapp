@@ -2,7 +2,7 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import DefaultLayout from "../app/UI/Layout/Default";
 import LoginForm from 'src/app/UI/Home/LoginForm/LoginForm';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 interface credentials {
     usernameOrEmail: string;
@@ -10,7 +10,8 @@ interface credentials {
 }
 
 const Home: NextPage = () => {
-    const [credentials, setCredentials] = useState({ usernameOrEmail: "", password: "" } as credentials),
+    const [loginInfo, setLoginInfo] = useState({ username: "", email: "", password: "" }),
+        [credentials, setCredentials] = useState({ usernameOrEmail: "", password: "" } as credentials),
         handlers = {
             onLoginFormSubmit(e: Event) {
                 e.preventDefault();
@@ -43,6 +44,26 @@ const Home: NextPage = () => {
                         onSubmit={handlers.onLoginFormSubmit}
                         onChange={(data: credentials) => setCredentials({ usernameOrEmail: data.usernameOrEmail, password: data.password })} />
                 </main>
+
+                <div>
+                    <form onSubmit={e => alert(JSON.stringify(loginInfo))}>
+                        <input 
+                            value={loginInfo.username}
+                            onChange={e => setLoginInfo({ username: e.target.value, email: loginInfo.email, password: loginInfo.password })}
+                            type="username" />
+                        <input 
+                            value={loginInfo.email}
+                            onChange={e => setLoginInfo({ username: loginInfo.username, email: e.target.value, password: loginInfo.password })}
+                            type="email" />
+                        <input 
+                            value={loginInfo.password}
+                            onChange={e => setLoginInfo({ username: loginInfo.username, email: loginInfo.email, password: e.target.value })}
+                            type="password" />
+                        <button type="submit">submit</button>
+                    </form>
+
+                    {JSON.stringify(loginInfo)}
+                </div>
             </div>
         </DefaultLayout>
     );
