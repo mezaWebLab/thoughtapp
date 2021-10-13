@@ -70,6 +70,7 @@ class EventManager {
     onSwipe(swipeData: any): void {
         this.cameraManager.default.rotation.x += -swipeData.y / 500;
         this.cameraManager.default.rotation.y += -swipeData.x / 500;
+        console.log({x: this.cameraManager.default.rotation.x, y: this.cameraManager.default.rotation.y });
     }
 }
 

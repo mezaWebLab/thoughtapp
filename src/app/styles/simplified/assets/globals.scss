@@ -1,0 +1,809 @@
+body {
+    line-height      : $line-height-body;
+    font-family      : $font-family-body;
+    font-weight      : $font-weight-body;
+    color            : $color-body;
+    letter-spacing   : $letter-spacing-body;
+    background-color : $body-background-color;
+    font-size        : $font-size-body;
+    @include sm { font-size : $p-font-size-sm }
+    @include xsm { font-size : $p-font-size-xsm }
+    @include md { font-size : $p-font-size-md }
+    @include xmd { font-size : $p-font-size-xmd }
+    @include lg { font-size : $p-font-size-lg }
+    @include xlg { font-size : $p-font-size-xlg }
+    @include xxlg { font-size : $p-font-size-xxlg }
+}
+
+.ul li {
+    list-style: dot;
+}
+
+[columns="2"] {
+    grid-template-columns : repeat(2, minmax(0, 1fr));
+    display               : grid;
+    grid-gap              : $grid-gap;
+}
+
+[sm-1] {
+    grid-template-columns : minmax(0, 1fr);
+    display               : grid;
+    grid-gap              : $grid-gap;
+
+    @media all and (-ms-high-contrast : none) {
+        // IE11
+        -ms-grid-columns : 1fr 1fr;
+        display          : -ms-grid;
+    }
+}
+
+[sm-2] {
+    grid-template-columns : repeat(2, minmax(0, 1fr));
+    display               : grid;
+    grid-gap              : $grid-gap;
+}
+
+[sm-3] {
+    grid-template-columns : repeat(3, minmax(0, 1fr));
+    display               : grid;
+    grid-gap              : $grid-gap;
+}
+
+[sm-4] {
+    grid-template-columns : repeat(4, minmax(0, 1fr));
+    display               : grid;
+    grid-gap              : $grid-gap;
+}
+
+[sm-5] {
+    grid-template-columns : repeat(5, minmax(0, 1fr));
+    display               : grid;
+    grid-gap              : $grid-gap;
+}
+
+[sm-6] {
+    grid-template-columns : repeat(6, minmax(0, 1fr));
+    display               : grid;
+    grid-gap              : $grid-gap;
+}
+
+[sm-7] {
+    grid-template-columns : repeat(7, minmax(0, 1fr));
+    display               : grid;
+    grid-gap              : $grid-gap;
+}
+
+[sm-8] {
+    grid-template-columns : repeat(8, minmax(0, 1fr));
+    display               : grid;
+    grid-gap              : $grid-gap;
+}
+
+[sm-9] {
+    grid-template-columns : repeat(9, minmax(0, 1fr));
+    display               : grid;
+    grid-gap              : $grid-gap;
+}
+
+[sm-10] {
+    grid-template-columns : repeat(10, minmax(0, 1fr));
+    display               : grid;
+    grid-gap              : $grid-gap;
+}
+
+[sm-11] {
+    grid-template-columns : repeat(11, minmax(0, 1fr));
+    display               : grid;
+    grid-gap              : $grid-gap;
+}
+
+[sm-12] {
+    grid-template-columns : repeat(12, minmax(0, 1fr));
+    display               : grid;
+    grid-gap              : $grid-gap;
+}
+
+[md-1] {
+    @include md {
+        grid-template-columns : minmax(0, 1fr);
+        display               : grid;
+        grid-gap              : $grid-gap;
+    }
+}
+
+[md-2],
+[md="2"] {
+    @include md {
+        grid-template-columns : repeat(2, minmax(0, 1fr));
+        display               : grid;
+        grid-gap              : $grid-gap;
+    }
+}
+
+[md-3] {
+    @include md {
+        grid-template-columns : repeat(3, minmax(0, 1fr));
+        display               : grid;
+        grid-gap              : $grid-gap;
+    }
+}
+
+[md-4] {
+    @include md {
+        grid-template-columns : repeat(4, minmax(0, 1fr));
+        display               : grid;
+        grid-gap              : $grid-gap;
+    }
+}
+
+[md-5] {
+    @include md {
+        grid-template-columns : repeat(5, minmax(0, 1fr));
+        display               : grid;
+        grid-gap              : $grid-gap;
+    }
+}
+
+[md-6] {
+    @include md {
+        grid-template-columns : repeat(6, minmax(0, 1fr));
+        display               : grid;
+        grid-gap              : $grid-gap;
+    }
+}
+
+[md-7] {
+    @include md {
+        grid-template-columns : repeat(7, minmax(0, 1fr));
+        display               : grid;
+        grid-gap              : $grid-gap;
+    }
+}
+
+[md-8] {
+    @include md {
+        grid-template-columns : repeat(8, minmax(0, 1fr));
+        display               : grid;
+        grid-gap              : $grid-gap;
+    }
+}
+
+[md-9] {
+    @include md {
+        grid-template-columns : repeat(9, minmax(0, 1fr));
+        display               : grid;
+        grid-gap              : $grid-gap;
+    }
+}
+
+[md-10] {
+    @include md {
+        grid-template-columns : repeat(10, minmax(0, 1fr));
+        display               : grid;
+        grid-gap              : $grid-gap;
+    }
+}
+
+[md-11] {
+    @include md {
+        grid-template-columns : repeat(11, minmax(0, 1fr));
+        display               : grid;
+        grid-gap              : $grid-gap;
+    }
+}
+
+[md-12] {
+    @include md {
+        grid-template-columns : repeat(12, minmax(0, 1fr));
+        display               : grid;
+        grid-gap              : $grid-gap;
+    }
+}
+
+[xmd-1] {
+    @include xmd {
+        grid-template-columns : minmax(0, 1fr);
+        display               : grid;
+        grid-gap              : $grid-gap;
+    }
+}
+
+[xmd-2] {
+    @include xmd {
+        grid-template-columns : repeat(2, minmax(0, 1fr));
+        display               : grid;
+        grid-gap              : $grid-gap;
+    }
+}
+
+[xmd-3] {
+    @include xmd {
+        grid-template-columns : repeat(3, minmax(0, 1fr));
+        display               : grid;
+        grid-gap              : $grid-gap;
+    }
+}
+
+[xmd-4] {
+    @include md {
+        grid-template-columns : repeat(4, minmax(0, 1fr));
+        display               : grid;
+        grid-gap              : $grid-gap;
+    }
+}
+
+[xmd-5] {
+    @include xmd {
+        grid-template-columns : repeat(5, minmax(0, 1fr));
+        display               : grid;
+        grid-gap              : $grid-gap;
+    }
+}
+
+[xmd-6] {
+    @include xmd {
+        grid-template-columns : repeat(6, minmax(0, 1fr));
+        display               : grid;
+        grid-gap              : $grid-gap;
+    }
+}
+
+[xmd-7] {
+    @include xmd {
+        grid-template-columns : repeat(7, minmax(0, 1fr));
+        display               : grid;
+        grid-gap              : $grid-gap;
+    }
+}
+
+[xmd-8] {
+    @include xmd {
+        grid-template-columns : repeat(8, minmax(0, 1fr));
+        display               : grid;
+        grid-gap              : $grid-gap;
+    }
+}
+
+[xmd-9] {
+    @include xmd {
+        grid-template-columns : repeat(9, minmax(0, 1fr));
+        display               : grid;
+        grid-gap              : $grid-gap;
+    }
+}
+
+[xmd-10] {
+    @include xmd {
+        grid-template-columns : repeat(10, minmax(0, 1fr));
+        display               : grid;
+        grid-gap              : $grid-gap;
+    }
+}
+
+[xmd-11] {
+    @include xmd {
+        grid-template-columns : repeat(11, minmax(0, 1fr));
+        display               : grid;
+        grid-gap              : $grid-gap;
+    }
+}
+
+[xmd-12] {
+    @include xmd {
+        grid-template-columns : repeat(12, minmax(0, 1fr));
+        display               : grid;
+        grid-gap              : $grid-gap;
+    }
+}
+
+[xxmd-1] {
+    @include xxmd {
+        grid-template-columns : minmax(0, 1fr);
+        display               : grid;
+        grid-gap              : $grid-gap;
+    }
+}
+
+[xxmd-2] {
+    @include xxmd {
+        grid-template-columns : repeat(2, minmax(0, 1fr));
+        display               : grid;
+        grid-gap              : $grid-gap;
+    }
+}
+
+[xxmd-3] {
+    @include xxmd {
+        grid-template-columns : repeat(3, minmax(0, 1fr));
+        display               : grid;
+        grid-gap              : $grid-gap;
+    }
+}
+
+[xxmd-4] {
+    @include xxmd {
+        grid-template-columns : repeat(4, minmax(0, 1fr));
+        display               : grid;
+        grid-gap              : $grid-gap;
+    }
+}
+
+[xxmd-5] {
+    @include xxmd {
+        grid-template-columns : repeat(5, minmax(0, 1fr));
+        display               : grid;
+        grid-gap              : $grid-gap;
+    }
+}
+
+[xxmd-6] {
+    @include xxmd {
+        grid-template-columns : repeat(6, minmax(0, 1fr));
+        display               : grid;
+        grid-gap              : $grid-gap;
+    }
+}
+
+[xxmd-7] {
+    @include xxmd {
+        grid-template-columns : repeat(7, minmax(0, 1fr));
+        display               : grid;
+        grid-gap              : $grid-gap;
+    }
+}
+
+[xxmd-8] {
+    @include xxmd {
+        grid-template-columns : repeat(8, minmax(0, 1fr));
+        display               : grid;
+        grid-gap              : $grid-gap;
+    }
+}
+
+[xxmd-9] {
+    @include xxmd {
+        grid-template-columns : repeat(9, minmax(0, 1fr));
+        display               : grid;
+        grid-gap              : $grid-gap;
+    }
+}
+
+[xxmd-10] {
+    @include xxmd {
+        grid-template-columns : repeat(10, minmax(0, 1fr));
+        display               : grid;
+        grid-gap              : $grid-gap;
+    }
+}
+
+[xxmd-11] {
+    @include xxmd {
+        grid-template-columns : repeat(11, minmax(0, 1fr));
+        display               : grid;
+        grid-gap              : $grid-gap;
+    }
+}
+
+[xxmd-12] {
+    @include xxmd {
+        grid-template-columns : repeat(12, minmax(0, 1fr));
+        display               : grid;
+        grid-gap              : $grid-gap;
+    }
+}
+
+[lg-1] {
+    @include lg {
+        grid-template-columns : minmax(0, 1fr);
+        display               : grid;
+        grid-gap              : $grid-gap;
+    }
+}
+
+[lg-2] {
+    @include lg {
+        grid-template-columns : repeat(2, minmax(0, 1fr));
+        display               : grid;
+        grid-gap              : $grid-gap;
+    }
+}
+
+[lg-3] {
+    @include lg {
+        grid-template-columns : repeat(3, minmax(0, 1fr));
+        display               : grid;
+        grid-gap              : $grid-gap;
+    }
+}
+
+[lg-4] {
+    @include lg {
+        grid-template-columns : repeat(4, minmax(0, 1fr));
+        display               : grid;
+        grid-gap              : $grid-gap;
+    }
+}
+
+[lg-5] {
+    @include lg {
+        grid-template-columns : repeat(5, minmax(0, 1fr));
+        display               : grid;
+        grid-gap              : $grid-gap;
+    }
+}
+
+[lg-6] {
+    @include lg {
+        grid-template-columns : repeat(6, minmax(0, 1fr));
+        display               : grid;
+        grid-gap              : $grid-gap;
+    }
+}
+
+[lg-7] {
+    @include lg {
+        grid-template-columns : repeat(7, minmax(0, 1fr));
+        display               : grid;
+        grid-gap              : $grid-gap;
+    }
+}
+
+[lg-8] {
+    @include lg {
+        grid-template-columns : repeat(8, minmax(0, 1fr));
+        display               : grid;
+        grid-gap              : $grid-gap;
+    }
+}
+
+[lg-9] {
+    @include lg {
+        grid-template-columns : repeat(9, minmax(0, 1fr));
+        display               : grid;
+        grid-gap              : $grid-gap;
+    }
+}
+
+[lg-10] {
+    @include lg {
+        grid-template-columns : repeat(10, minmax(0, 1fr));
+        display               : grid;
+        grid-gap              : $grid-gap;
+    }
+}
+
+[lg-11] {
+    @include lg {
+        grid-template-columns : repeat(11, minmax(0, 1fr));
+        display               : grid;
+        grid-gap              : $grid-gap;
+    }
+}
+
+[lg-12] {
+    @include lg {
+        grid-template-columns : repeat(12, minmax(0, 1fr));
+        display               : grid;
+        grid-gap              : $grid-gap;
+    }
+}
+
+[xlg-1] {
+    @include xlg {
+        grid-template-columns : minmax(0, 1fr);
+        display               : grid;
+        grid-gap              : $grid-gap;
+    }
+}
+
+[xlg-2] {
+    @include xlg {
+        grid-template-columns : repeat(2, minmax(0, 1fr));
+        display               : grid;
+        grid-gap              : $grid-gap;
+    }
+}
+
+[xlg-3] {
+    @include xlg {
+        grid-template-columns : repeat(3, minmax(0, 1fr));
+        display               : grid;
+        grid-gap              : $grid-gap;
+    }
+}
+
+[xlg-4] {
+    @include xlg {
+        grid-template-columns : repeat(4, minmax(0, 1fr));
+        display               : grid;
+        grid-gap              : $grid-gap;
+    }
+}
+
+[xlg-5] {
+    @include xlg {
+        grid-template-columns : repeat(5, minmax(0, 1fr));
+        display               : grid;
+        grid-gap              : $grid-gap;
+    }
+}
+
+[xlg-6] {
+    @include xlg {
+        grid-template-columns : repeat(6, minmax(0, 1fr));
+        display               : grid;
+        grid-gap              : $grid-gap;
+    }
+}
+
+[xlg-7] {
+    @include xlg {
+        grid-template-columns : repeat(7, minmax(0, 1fr));
+        display               : grid;
+        grid-gap              : $grid-gap;
+    }
+}
+
+[xlg-8] {
+    @include xlg {
+        grid-template-columns : repeat(8, minmax(0, 1fr));
+        display               : grid;
+        grid-gap              : $grid-gap;
+    }
+}
+
+[xlg-9] {
+    @include xlg {
+        grid-template-columns : repeat(9, minmax(0, 1fr));
+        display               : grid;
+        grid-gap              : $grid-gap;
+    }
+}
+
+[xlg-10] {
+    @include xlg {
+        grid-template-columns : repeat(10, minmax(0, 1fr));
+        display               : grid;
+        grid-gap              : $grid-gap;
+    }
+}
+
+[xlg-11] {
+    @include xlg {
+        grid-template-columns : repeat(11, minmax(0, 1fr));
+        display               : grid;
+        grid-gap              : $grid-gap;
+    }
+}
+
+[xlg-12] {
+    @include xlg {
+        grid-template-columns : repeat(12, minmax(0, 1fr));
+        display               : grid;
+        grid-gap              : $grid-gap;
+    }
+}
+
+[xxlg-1] {
+    @include xxlg {
+        grid-template-columns : minmax(0, 1fr);
+        display               : grid;
+        grid-gap              : $grid-gap;
+    }
+}
+
+[xxlg-2] {
+    @include xxlg {
+        grid-template-columns : repeat(2, minmax(0, 1fr));
+        display               : grid;
+        grid-gap              : $grid-gap;
+    }
+}
+
+[xxlg-3] {
+    @include xxlg {
+        grid-template-columns : repeat(3, minmax(0, 1fr));
+        display               : grid;
+        grid-gap              : $grid-gap;
+    }
+}
+
+[xxlg-4] {
+    @include xxlg {
+        grid-template-columns : repeat(4, minmax(0, 1fr));
+        display               : grid;
+        grid-gap              : $grid-gap;
+    }
+}
+
+[xxlg-5] {
+    @include xxlg {
+        grid-template-columns : repeat(5, minmax(0, 1fr));
+        display               : grid;
+        grid-gap              : $grid-gap;
+    }
+}
+
+[xxlg-6] {
+    @include xxlg {
+        grid-template-columns : repeat(6, minmax(0, 1fr));
+        display               : grid;
+        grid-gap              : $grid-gap;
+    }
+}
+
+[xxlg-7] {
+    @include xxlg {
+        grid-template-columns : repeat(7, minmax(0, 1fr));
+        display               : grid;
+        grid-gap              : $grid-gap;
+    }
+}
+
+[xxlg-8] {
+    @include xxlg {
+        grid-template-columns : repeat(8, minmax(0, 1fr));
+        display               : grid;
+        grid-gap              : $grid-gap;
+    }
+}
+
+[xxlg-9] {
+    @include xxlg {
+        grid-template-columns : repeat(9, minmax(0, 1fr));
+        display               : grid;
+        grid-gap              : $grid-gap;
+    }
+}
+
+[xxlg-10] {
+    @include xxlg {
+        grid-template-columns : repeat(10, minmax(0, 1fr));
+        display               : grid;
+        grid-gap              : $grid-gap;
+    }
+}
+
+[xxlg-11] {
+    @include xxlg {
+        grid-template-columns : repeat(11, minmax(0, 1fr));
+        display               : grid;
+        grid-gap              : $grid-gap;
+    }
+}
+
+[xxlg-12] {
+    @include xxlg {
+        grid-template-columns : repeat(12, minmax(0, 1fr));
+        display               : grid;
+        grid-gap              : $grid-gap;
+    }
+}
+
+p {
+    margin      : $p-margin;
+    font-size   : $p-font-size;
+    line-height : $p-line-height;
+    @include sm { font-size : $p-font-size-sm }
+    @include xsm { font-size : $p-font-size-xsm }
+    @include md { font-size : $p-font-size-md }
+    @include xmd { font-size : $p-font-size-xmd }
+    @include lg { font-size : $p-font-size-lg }
+    @include xlg { font-size : $p-font-size-xlg }
+    @include xxlg { font-size : $p-font-size-xxlg }
+}
+
+button { font-family : $font-family-body }
+
+a,
+button {
+    cursor : pointer;
+}
+
+h1, 
+.h1 {
+    font-size   : $h1-font-size;
+    font-weight : $h1-font-weight;
+    line-height : $h1-line-height;
+    margin      : $h1-margin;
+    color       : $color-header;
+    @include sm { font-size : $h1-font-size-sm }
+    @include xsm { font-size : $h1-font-size-xsm }
+    @include md { font-size : $h1-font-size-md }
+    @include xmd { font-size : $h1-font-size-xmd }
+    @include lg { font-size : $h1-font-size-lg }
+    @include xlg { font-size : $h1-font-size-xlg }
+    @include xxlg { font-size : $h1-font-size-xxlg }
+}
+
+h2, 
+.h2 {
+    font-size      : $h2-font-size;
+    font-weight    : $h2-font-weight;
+    line-height    : $h2-line-height;
+    margin         : $h2-margin;
+    color          : $color-header;
+    letter-spacing : $h2-letter-spacing;
+    @include sm { font-size : $h2-font-size-sm }
+    @include xsm { font-size : $h2-font-size-xsm }
+    @include md { font-size : $h2-font-size-md; margin : $h2-margin-md; }
+    @include xmd { font-size : $h2-font-size-xmd; }
+    @include lg { font-size : $h2-font-size-lg }
+    @include xlg { font-size : $h2-font-size-xlg }
+    @include xxlg { font-size : $h2-font-size-xxlg }
+}
+
+h3, 
+.h3 {
+    font-size   : $h3-font-size;
+    font-weight : $h3-font-weight;
+    line-height : $h3-line-height;
+    margin      : $h3-margin;
+    color       : $color-header;
+    @include sm { font-size : $h3-font-size-sm }
+    @include xsm { font-size : $h3-font-size-xsm }
+    @include md { font-size : $h3-font-size-md }
+    @include xmd { font-size : $h3-font-size-xmd }
+    @include lg { font-size : $h3-font-size-lg }
+    @include xlg { font-size : $h3-font-size-xlg }
+    @include xxlg { font-size : $h3-font-size-xxlg }
+}
+
+h4, 
+.h4 {
+    font-size   : $h4-font-size;
+    font-weight : $h4-font-weight;
+    line-height : $h4-line-height;
+    margin      : $h4-margin;
+    color       : $color-header;
+    @include sm { font-size : $h4-font-size-sm }
+    @include xsm { font-size : $h4-font-size-xsm }
+    @include md { font-size : $h4-font-size-md }
+    @include xmd { font-size : $h4-font-size-xmd }
+    @include lg { font-size : $h4-font-size-lg }
+    @include xlg { font-size : $h4-font-size-xlg }
+    @include xxlg { font-size : $h4-font-size-xxlg }
+}
+
+h5, 
+.h5 {
+    font-size   : $h5-font-size;
+    font-weight : $h5-font-weight;
+    line-height : $h5-line-height;
+    margin      : $h5-margin;
+    color       : #42629B;
+    @include sm { font-size : $h5-font-size-sm }
+    @include xsm { font-size : $h5-font-size-xsm }
+    @include md { font-size : $h5-font-size-md }
+    @include xmd { font-size : $h5-font-size-xmd }
+    @include lg { font-size : $h5-font-size-lg }
+    @include xlg { font-size : $h5-font-size-xlg }
+    @include xxlg { font-size : $h5-font-size-xxlg }
+}
+
+h6, 
+.h6 {
+    font-size   : $h6-font-size;
+    font-weight : $h6-font-weight;
+    line-height : $h6-line-height;
+    margin      : $h6-margin;
+    color       : $color-header;
+    @include sm { font-size : $h6-font-size-sm }
+    @include xsm { font-size : $h6-font-size-xsm }
+    @include md { font-size : $h6-font-size-md }
+    @include xmd { font-size : $h6-font-size-xmd }
+    @include lg { font-size : $h6-font-size-lg }
+    @include xlg { font-size : $h6-font-size-xlg }
+    @include xxlg { font-size : $h6-font-size-xxlg }
+}
+
+[debug="true"] {
+    outline : 1px solid red;
+}
+
+.container {
+    max-width     : 1024px;
+    padding-left  : 15px;
+    padding-right : 15px;
+    margin        : 0 auto;
+}

@@ -1,0 +1,87 @@
+@mixin sm {
+    @media (min-width : $sm) {
+        @content;
+    }
+}
+
+@mixin xsm {
+    @media (min-width : $xsm) {
+        @content;
+    }
+}
+
+@mixin md {
+    @media (min-width : $md) {
+        @content;
+    }
+}
+
+@mixin xmd {
+    @media (min-width : $xmd) {
+        @content;
+    }
+}
+
+@mixin xxmd {
+    @media (min-width : $xxmd) {
+        @content;
+    }
+}
+
+@mixin lg {
+    @media (min-width : $lg) {
+        @content;
+    }
+}
+
+@mixin xlg {
+    @media (min-width : $xlg) {
+        @content;
+    }
+}
+
+@mixin xxlg {
+    @media (min-width : $xxlg) {
+        @content;
+    }
+}
+
+@mixin min-width($px) {
+    @media (min-width : $px) {
+        @content;
+    }
+}
+
+@mixin max-width($px) {
+    @media (max-width : $px) {
+        @content;
+    }
+}
+
+@function color($color) {
+    @if $color == primary {
+        @return $color-primary;
+    } @else if $color == secondary {
+        @return $color-secondary;
+    } @else if $color == tertiary {
+        @return $color-tertiary;
+    } @else if $color == body {
+        @return $color-body;
+    } @else if $color == admin-primary {
+        @return $color-admin-primary;
+    } @else {
+        @return null;
+    }
+}
+
+@function transitions($duration, $properties...) {
+    $transition: "";
+    $newTransition: "";
+
+    @each $property in $properties {
+    	$newTransition: $property + " " + $duration + " ease-in-out, ";
+    	$transition: $transition + $newTransition;
+    }
+
+    @return unquote($transition);
+}

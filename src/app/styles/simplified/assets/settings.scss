@@ -1,0 +1,160 @@
+/* --------------- */
+/*   Breakpoints   */
+/* --------------- */
+$sm   : 420px;
+$xsm  : 500px;
+$md   : 640px;
+$xmd  : 767px;
+$xxmd : 920px;
+$lg   : 1024px;
+$xlg  : 1200px;
+$xxlg : 1400px;
+
+/* --------------- */
+/*    Container    */
+/* --------------- */
+$container-padding   : 15px;
+$container-max-width : 1024px;
+
+/* --------------- */
+/*      Grid       */
+/* --------------- */
+$grid-gap : 25px;
+
+/* --------------- */
+/*      Block      */
+/* --------------- */
+$block-margin-bottom      : 30px;
+$block-margin-bottom-sm   : 30px;
+$block-margin-bottom-xsm  : 30px;
+$block-margin-bottom-md   : 35px;
+$block-margin-bottom-xmd  : 35px;
+$block-margin-bottom-lg   : 35px;
+$block-margin-bottom-xlg  : 35px;
+$block-margin-bottom-xxlg : 35px;
+
+/* --------------- */
+/*     Colors      */
+/* --------------- */
+$color-primary         : #242424;
+$color-secondary       : #1C3664;
+$color-tertiary        : #E8F0FF;
+$black                 : #0a0a0a;
+$white                 : rgb(250, 250, 250);
+$body-background-color : #ffffff;
+
+/* --------------- */
+/*     Layout      */
+/* --------------- */
+$navigation-height-mobile  : 60px;
+$navigation-height-desktop : 70px;
+
+/* --------------- */
+/*    Typography   */
+/* --------------- */
+// headers
+$font-family-header    : "Roboto", sans-serif;
+$font-weight-header    : 400;
+$line-height-header    : 1;
+$letter-spacing-header : normal;
+$color-header          : $white;
+
+// body
+$font-family-body    : "Lato", sans-serif;
+$font-weight-body    : 300;
+$line-height-body    : 1.5;
+$letter-spacing-body : normal;
+$color-body          : $white;
+$font-size-body      : 14px;
+
+// p
+$p-font-size      : 16px;
+$p-font-size-sm   : 16px;
+$p-font-size-xsm  : 16px;
+$p-font-size-md   : 16px;
+$p-font-size-xmd  : 16px;
+$p-font-size-lg   : 16px;
+$p-font-size-xlg  : 16px;
+$p-font-size-xxlg : 16px;
+$p-line-height    : $line-height-body;
+$p-margin         : 0px;
+
+// h1
+$h1-font-size      : 48px;
+$h1-font-size-sm   : 48px;
+$h1-font-size-xsm  : 48px;
+$h1-font-size-md   : 48px;
+$h1-font-size-xmd  : 48px;
+$h1-font-size-lg   : 48px;
+$h1-font-size-xlg  : 48px;
+$h1-font-size-xxlg : 48px;
+$h1-font-weight    : 400;
+$h1-line-height    : $line-height-header;
+$h1-margin         : 0px 0px 15px 0px;
+
+// h2
+$h2-font-size      : 20px;
+$h2-font-size-sm   : 20px;
+$h2-font-size-xsm  : 20px;
+$h2-font-size-md   : 25px;
+$h2-font-size-xmd  : 25px;
+$h2-font-size-lg   : 30px;
+$h2-font-size-xlg  : 30px;
+$h2-font-size-xxlg : 30px;
+$h2-font-weight    : $font-weight-header;
+$h2-line-height    : $line-height-header;
+$h2-letter-spacing : $letter-spacing-header;
+$h2-margin         : 0px 0px 15px 0px;
+$h2-margin-md      : 0px 0px 30px 0px;
+
+// h3
+$h3-font-size      : 1.17em;
+$h3-font-size-sm   : 1.17em;
+$h3-font-size-xsm  : 1.17em;
+$h3-font-size-md   : 1.17em;
+$h3-font-size-xmd  : 1.17em;
+$h3-font-size-lg   : 1.17em;
+$h3-font-size-xlg  : 1.17em;
+$h3-font-size-xxlg : 1.17em;
+$h3-font-weight    : $font-weight-header;
+$h3-line-height    : $line-height-header;
+$h3-margin         : 0px 0px 15px 0px;
+
+// h4
+$h4-font-size      : 1em;
+$h4-font-size-sm   : 1em;
+$h4-font-size-xsm  : 1em;
+$h4-font-size-md   : 1em;
+$h4-font-size-xmd  : 1em;
+$h4-font-size-lg   : 1em;
+$h4-font-size-xlg  : 1em;
+$h4-font-size-xxlg : 1em;
+$h4-font-weight    : $font-weight-header;
+$h4-line-height    : $line-height-header;
+$h4-margin         : 0px 0px 15px 0px;
+
+// h5
+$h5-font-size      : .83em;
+$h5-font-size-sm   : .83em;
+$h5-font-size-xsm  : .83em;
+$h5-font-size-md   : .83em;
+$h5-font-size-xmd  : .83em;
+$h5-font-size-lg   : .83em;
+$h5-font-size-xlg  : .83em;
+$h5-font-size-xxlg : .83em;
+$h5-font-weight    : $font-weight-header;
+$h5-line-height    : $line-height-header;
+$h5-margin         : 0px 0px 15px 0px;
+
+// h6
+$h6-font-size      : .67em;
+$h6-font-size-sm   : .67em;
+$h6-font-size-xsm  : .67em;
+$h6-font-size-md   : .67em;
+$h6-font-size-xmd  : .67em;
+$h6-font-size-lg   : .67em;
+$h6-font-size-xlg  : .67em;
+$h6-font-size-xxlg : .67em;
+$h6-font-weight    : $font-weight-header;
+$h6-line-height    : $line-height-header;
+$h6-margin         : 0px 0px 15px 0px;
