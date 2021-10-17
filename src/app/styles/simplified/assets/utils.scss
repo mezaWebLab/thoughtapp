@@ -69,6 +69,8 @@
         @return $color-body;
     } @else if $color == admin-primary {
         @return $color-admin-primary;
+    } @else if $color == $color-success {
+        @return $color-admin-primary;
     } @else {
         @return null;
     }
