@@ -43,7 +43,7 @@ export default function LoginForm(props: Props) {
             }
         `,
         fields: css`
-            margin-bottom : 10px;
+            margin-bottom : 15px;
         `,
         createNewAccountButton: css`
             max-width: 205px;
@@ -55,6 +55,7 @@ export default function LoginForm(props: Props) {
         <div className={styles.main}>
             <form onSubmit={(e: any) => props.onSubmit(e)}>
                 <Field
+                    required={true}
                     styles={styles.fields}
                     value={props.usernameOrEmail}
                     onChange={(e: any) => props.onChange({ usernameOrEmail: e.target.value, password: props.password })}
@@ -62,6 +63,7 @@ export default function LoginForm(props: Props) {
                     theme="dark"
                     placeholder="Username or email" />
                 <Field 
+                    required={true}
                     styles={styles.fields}
                     value={props.password}
                     onChange={(e: any) => props.onChange({ usernameOrEmail:props.usernameOrEmail, password: e.target.value })}

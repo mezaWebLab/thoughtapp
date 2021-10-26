@@ -3,7 +3,7 @@ import Head from 'next/head'
 import DefaultLayout from "../app/UI/Layout/Default";
 import LoginForm from 'src/app/UI/Home/LoginForm/LoginForm';
 import { useEffect, useState } from 'react';
-import TestComp from "src/app/UI/TestComp";
+import { css } from "@emotion/css";
 
 interface credentials {
     usernameOrEmail: string;
@@ -18,6 +18,24 @@ const Home: NextPage = () => {
                 e.preventDefault();
                 console.log(credentials);
             }
+        },
+        styles = {
+            main: css`
+                padding-bottom : 100px;
+
+                header {
+                    text-align  : center;
+                    margin-top  : 100px;
+
+                    h1 {
+                        text-shadow : 0px 0px 23px #B45D5D;
+                    }
+
+                    p {
+                        font-size : 20px;
+                    }
+                }
+            `
         }
 
     return (
@@ -32,18 +50,20 @@ const Home: NextPage = () => {
                     href="/favicon.ico" />
                 <script src="https://cdn.jsdelivr.net/npm/interactjs/dist/interact.min.js"></script>
             </Head>
-            <div id="home">
+            <div
+                className={styles.main} 
+                id="home">
                 <header>
                     <div className="container">
                         <h1>ThoughtApp</h1>
-                        <h2>See what others are thinking</h2>
+                        <p>See what others are thinking</p>
                     </div>
                 </header>
                 <main>
                     <div className="container">
                         <LoginForm 
                             {...credentials}
-                            onSubmit={handlers.onLoginFormSubmit}
+                            onSubmit={(e: Event) => handlers.onLoginFormSubmit(e)}
                             onChange={(data: credentials) => setCredentials({ usernameOrEmail: data.usernameOrEmail, password: data.password })} />
                     </div>
                 </main>

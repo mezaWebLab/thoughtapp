@@ -8,12 +8,14 @@ interface Props {
     onChange: Function; // The on change handler
     placeholder?: string; // The field's placeholder text
     styles?: string; // inherited styles
+    required?: boolean; // whether this field is required or not
 }
 
 const is = BaseHelper.is;
 
 export default function Field(props: Props) {
     const type = is(props.type, "string") ? props.type : "text",
+        required = is(props.required, "boolean") ? props.required : false,
         styles = {
             main: css`
                 padding       : 17px 15px;
@@ -38,6 +40,7 @@ export default function Field(props: Props) {
     
     return (
         <input 
+            required={required}
             value={props.value}
             onChange={e => props.onChange(e)}
             className={`${styles.main} ${ currentTheme }`}
