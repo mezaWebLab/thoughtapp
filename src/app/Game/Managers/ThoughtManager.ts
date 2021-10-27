@@ -36,15 +36,23 @@ class ThoughtManager {
     }
 
     async init(): Promise<any> {
-        let rawThoughtData = await this.networkManager.get(this.networkManager.config.routes.thoughts),
-            configuredThoughts = [];
+        try {
+            console.log(1);
+            let rawThoughtData = await this.networkManager.get(this.networkManager.config.routes.thoughts, true),
+                configuredThoughts = [];
 
-        for (let i = 0; i < rawThoughtData.length; i++) {
-            configuredThoughts.push(this.configureThought(rawThoughtData[i]));
+            console.log(rawThoughtData);
+
+            for (let i = 0; i < rawThoughtData.length; i++) {
+                configuredThoughts.push(this.configureThought(rawThoughtData[i]));
+            }
+            
+            this.createMany(configuredThoughts);
+            this.renderAllPending();
+        } catch (e) {
+            console.log(e);
+            console.log("unable to reach thought server");
         }
-        
-        this.createMany(configuredThoughts);
-        this.renderAllPending();
     }
 
     configureThought(rawThoughtData: any): ThoughtData {

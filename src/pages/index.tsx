@@ -1,9 +1,13 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
+import { useRouter } from "next/router";
 import DefaultLayout from "../app/UI/Layout/Default";
 import LoginForm from 'src/app/UI/Home/LoginForm/LoginForm';
 import { useEffect, useState } from 'react';
 import { css } from "@emotion/css";
+import axios from "axios";
+import ApiUtils from "src/app/Game/Utils/ApiUtils";
+import NetworkManager from "src/app/Game/Managers/NetworkManager";
 
 interface credentials {
     usernameOrEmail: string;
@@ -11,12 +15,26 @@ interface credentials {
 }
 
 const Home: NextPage = () => {
-    const [loginInfo, setLoginInfo] = useState({ username: "", email: "", password: "" }),
+    const router = useRouter(),
+        [loginInfo, setLoginInfo] = useState({ username: "", email: "", password: "" }),
         [credentials, setCredentials] = useState({ usernameOrEmail: "", password: "" } as credentials),
         handlers = {
-            onLoginFormSubmit(e: Event) {
+            async onLoginFormSubmit(e: Event) {
                 e.preventDefault();
                 console.log(credentials);
+                try {
+                    const res = await axios.post(ApiUtils.url("/user/login"), { 
+                        usernameOrEmail: credentials.usernameOrEmail,
+                        password: credentials.password
+                    }),
+                        networkManager = new NetworkManager();
+
+                    networkManager.auth.storeToken(res.data.token);
+                    router.push("/thoughts");
+                } catch (e) {
+                    console.log("wrong");
+                    console.log(e);
+                }   
             }
         },
         styles = {

@@ -1,3 +1,4 @@
+import interact from '@interactjs/interact';
 import AnimationManager from "./AnimationManager";
 import CameraManager from "./CameraManager";
 import SceneManager from "./SceneManager";
@@ -23,15 +24,18 @@ class EventManager {
         this.cameraManager = cameraManager;
 
         // @ts-ignore
-        interact(document.getElementById("game-canvas"))
-            .draggable({
-                inertia: true,
-                listeners: {
-                    move: (e: any) => {
-                        this.emit("swipe", { x: e.delta.x, y: e.delta.y });
+        if (typeof interact === "function") {
+            // @ts-ignore
+            interact(document.getElementById("game-canvas"))
+                .draggable({
+                    inertia: true,
+                    listeners: {
+                        move: (e: any) => {
+                            this.emit("swipe", { x: e.delta.x, y: e.delta.y });
+                        }
                     }
-                }
-            });
+                });
+        }
     }
 
     /**

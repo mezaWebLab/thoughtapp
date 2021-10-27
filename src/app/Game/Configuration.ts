@@ -19,7 +19,9 @@ class Configuration {
     private _network = {
         apiUrl: process.env.API_URL,
         routes: {
-            thoughts: "/thoughts"
+            auth: "/auth",
+            thoughts: "/thoughts",
+            login: "/user/login"
         }
     }
 

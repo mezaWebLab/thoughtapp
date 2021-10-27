@@ -11,6 +11,7 @@ import IOManager from "./Managers/IOManager";
 import ObjectManager from "./Managers/ObjectManager";
 import AnimationManager from "./Managers/AnimationManager";
 import DOMEvents from "./Interfaces/DOMEvents";
+import Settings from "./Interfaces/Settings";
 
 /**
  * Main class of the game. 
@@ -29,7 +30,7 @@ import DOMEvents from "./Interfaces/DOMEvents";
 class Core {
     canvas: HTMLCanvasElement;
     config: Configuration;
-    DOMEvents: DOMEvents;
+    settings: Settings;
     engine: Engine;
     sceneManager: SceneManager;
     cameraManager: CameraManager;
@@ -42,10 +43,10 @@ class Core {
     animationManager: AnimationManager;
     devTools?: DevTools;
 
-    constructor(canvas: HTMLCanvasElement, DOMEvents: DOMEvents) {
+    constructor(canvas: HTMLCanvasElement, Settings: Settings) {
         this.canvas = canvas;
         this.config = new Configuration();
-        this.DOMEvents = DOMEvents; 
+        this.settings = Settings; 
         this.engine = new Engine(this.canvas);
         this.sceneManager = new SceneManager(this.engine);
         this.cameraManager = new CameraManager(this.sceneManager.default);
@@ -53,7 +54,7 @@ class Core {
         this.networkManager = new NetworkManager();
         this.objectManager = new ObjectManager(this.sceneManager.default);
         this.thoughtManager = new ThoughtManager(this.sceneManager, this.networkManager, this.objectManager);
-        this.animationManager = new AnimationManager(this.sceneManager.default, this.objectManager, this.cameraManager, this.thoughtManager, this.DOMEvents);
+        this.animationManager = new AnimationManager(this.sceneManager.default, this.objectManager, this.cameraManager, this.thoughtManager, this.settings);
         this.eventManager = new EventManager(this.sceneManager, this.thoughtManager, this.animationManager, this.cameraManager);
         this.ioManager = new IOManager(this.sceneManager, this.eventManager);
         if (this.config.development.devTools) this.devTools = new DevTools(this.engine, this.sceneManager);

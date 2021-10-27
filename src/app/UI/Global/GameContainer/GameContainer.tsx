@@ -44,7 +44,12 @@ function GameContainer(props: Props) {
 
     useEffect(() => {
         const canvas = document.getElementById("game-canvas") as HTMLCanvasElement,
-            game = new Game(canvas, { onThoughtClick: props.onThoughtClick });
+            game = new Game(canvas, { 
+                demo: false,
+                events: {
+                    onThoughtClick: props.onThoughtClick
+                } 
+            });
 
         game.init();
     }, []);

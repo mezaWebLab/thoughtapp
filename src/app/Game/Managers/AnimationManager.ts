@@ -3,7 +3,7 @@ import Configuration from "../Configuration";
 import CameraManager from "./CameraManager";
 import ObjectManager from "./ObjectManager";
 import ThoughtManager from "./ThoughtManager";
-import DOMEvents from "../Interfaces/DOMEvents";
+import Settings from "../Interfaces/Settings";
 
 /**
  * Animation manager class
@@ -18,16 +18,22 @@ class AnimationManager {
     objectManager: ObjectManager;
     cameraManager: CameraManager;
     thoughtManager: ThoughtManager;
-    DOMEvents: DOMEvents;
+    settings: Settings;
 
-    constructor(scene: Scene, objectManager: ObjectManager, cameraManager: CameraManager, thoughtManager: ThoughtManager, DOMEvents: DOMEvents) {
+    constructor(
+        scene: Scene, 
+        objectManager: ObjectManager, 
+        cameraManager: CameraManager, 
+        thoughtManager: ThoughtManager, 
+        settings: Settings) {
+            
         const config = new Configuration();
         this.config = config.animations;
         this.scene = scene;
         this.objectManager = objectManager;
         this.cameraManager = cameraManager;
         this.thoughtManager = thoughtManager;
-        this.DOMEvents = DOMEvents;
+        this.settings = settings;
     }
 
     /**
@@ -124,7 +130,7 @@ class AnimationManager {
                 pivot.mesh.animations = [quaternionX, quaternionZ, quaternionY];
                 thought.mesh.animations = [thoughtPositionX, thoughtPositionZ, thoughtPositionY];
                 this.scene.beginAnimation(thought.mesh, 0, 100, false, 10);
-                setTimeout(() => this.DOMEvents.onThoughtClick(thought), 250);
+                setTimeout(() => this.settings.events.onThoughtClick(thought), 250);
             break;
         }
     }

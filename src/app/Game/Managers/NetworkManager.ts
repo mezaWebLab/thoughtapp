@@ -1,5 +1,6 @@
 import Configuration from "../Configuration";
 import axios from "axios";
+import AuthManager from "./AuthManager";
 
 /**
  * Network Manager class
@@ -9,10 +10,12 @@ import axios from "axios";
  */
 class NetworkManager {
     config: any;
+    auth: AuthManager;
 
     constructor() {
         const config = new Configuration();
         this.config = config.network;
+        this.auth = new AuthManager(config);
     }
 
     /**
@@ -20,8 +23,14 @@ class NetworkManager {
      * @param route - the api route to make a GET request
      * @returns {Promise<any>}
      */
-    async get(route: string): Promise<any> {
-        const req = await axios.get(this.api(route));
+    async get(route: string, auth: boolean = false): Promise<any> {
+        console.log(this.auth.getToken());
+        const req = await axios.get(this.api(route), auth ? {
+            headers: {
+                Authorization: `Bearer ${ this.auth.getToken() }`
+            }
+        } : {});
+
         return req.data;
     }
 
