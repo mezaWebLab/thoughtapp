@@ -69,7 +69,7 @@ class Core {
             this.sceneManager.default.render();
             this.animationManager.runCoreAnimations();
         });
-        this.thoughtManager.init();
+        this.thoughtManager.init(this.settings.demo);
         this.ioManager.init();
         window.addEventListener("resize", () => this.engine.core.resize());
     }

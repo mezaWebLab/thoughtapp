@@ -66,7 +66,6 @@ const Home: NextPage = () => {
                 <link 
                     rel="icon" 
                     href="/favicon.ico" />
-                <script src="https://cdn.jsdelivr.net/npm/interactjs/dist/interact.min.js"></script>
             </Head>
             <div
                 className={styles.main} 

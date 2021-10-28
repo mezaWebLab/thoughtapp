@@ -12,7 +12,7 @@ interface Props {
 export default function LoginForm(props: Props) {
     const styles = {
         main: css`
-            background      : rgba(54, 54, 54, 0.88);
+            background      : rgba(54, 54, 54, 0.7);
             padding         : 21px 22px;
             border-radius   : 8px;
             box-shadow      : 0px 4px 10px 3px rgba(0, 0, 0, 0.25);

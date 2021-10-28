@@ -53,6 +53,10 @@ class Configuration {
         thoughtRotationSpeed: 0.0009
     }
 
+    private _demoMode = {
+        amountOfDummyThoughts: 400
+    }
+
     /**
      * Returns global settings
      * @returns {object}
@@ -107,6 +111,14 @@ class Configuration {
      */
      get animations() {
         return this._animations;
+    }
+
+    /**
+     * Returns demoMode settings
+     * @returns {object}
+     */
+     get demoMode() {
+        return this._demoMode;
     }
 }
 

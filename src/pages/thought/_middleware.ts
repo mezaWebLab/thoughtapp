@@ -8,18 +8,12 @@ export async function middleware(req: NextRequest, ev: NextFetchEvent) {
     const config = new Configuration(),
         token = req.cookies.token;
 
-    console.log(token);
-
-    console.log(ApiUtils.url(config.network.routes.auth));
-
     if (typeof token === "string") {
         try {
-            const res = await axios
+            await axios
                 .get(ApiUtils.url(config.network.routes.auth), { 
                     headers: { Authorization: `Bearer ${ token }` }
                 });
-
-            console.log(res);
         } catch (e) {
             console.log(e);
             return NextResponse.redirect("/");

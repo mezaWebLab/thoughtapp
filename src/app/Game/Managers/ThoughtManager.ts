@@ -19,39 +19,58 @@ import CalcUtils from "../Utils/CalcUtils";
  */
 class ThoughtManager {
     config: any;
+    mode: string | null;
     sceneManager: SceneManager;
     networkManager: NetworkManager;
     objectManager: ObjectManager;
     thoughts: Array<Thought>;
     utils: ThoughtUtils;
+    active: boolean;
 
     constructor(sceneManager: SceneManager, networkManager: NetworkManager, objectManager: ObjectManager) {
         const config = new Configuration();
         this.config = config.thoughts;
+        this.mode = null;
         this.sceneManager = sceneManager;
         this.networkManager = networkManager;
         this.objectManager = objectManager;
         this.thoughts = [];
         this.utils = new ThoughtUtils();
+        this.active = false;
     }
 
-    async init(): Promise<any> {
-        try {
-            console.log(1);
-            let rawThoughtData = await this.networkManager.get(this.networkManager.config.routes.thoughts, true),
-                configuredThoughts = [];
+    async init(demoMode: boolean = false): Promise<any> {
+        this.mode = demoMode ? "demo" : "live";
+        await this.launchCurrentMode();
+    }
 
-            console.log(rawThoughtData);
+    async launchCurrentMode(): Promise<void> {
+        if (this.active) this.clearAllThoughts();
 
-            for (let i = 0; i < rawThoughtData.length; i++) {
-                configuredThoughts.push(this.configureThought(rawThoughtData[i]));
-            }
-            
-            this.createMany(configuredThoughts);
-            this.renderAllPending();
-        } catch (e) {
-            console.log(e);
-            console.log("unable to reach thought server");
+        switch (this.mode) {
+            case "live":
+                try {
+                    let rawThoughtData = await this.networkManager.get(this.networkManager.config.routes.thoughts, true),
+                        configuredThoughts = [];
+        
+                    for (let i = 0; i < rawThoughtData.length; i++) {
+                        configuredThoughts.push(this.configureThought(rawThoughtData[i]));
+                    }
+                    
+                    this.createMany(configuredThoughts);
+                    this.renderAllPending();
+                } catch (e) {
+                    console.log(e);
+                    console.log("unable to reach thought server");
+                }
+            break;
+            case "demo":
+                console.log("yo");
+                const dummyThoughtData = this.generateDummyThoughtData();
+                console.log(dummyThoughtData);
+                this.createMany(dummyThoughtData);
+                this.renderAllPending();
+            break;
         }
     }
 
@@ -68,7 +87,7 @@ class ThoughtManager {
 
     getThought(where: any, fromCache: boolean = true) {
         if (!fromCache) {
-
+            // todo
         } else {
             return this.thoughts.find(thought => { return thought.id === parseInt(where.id) });
         }
@@ -102,6 +121,28 @@ class ThoughtManager {
         const pivot = this.objectManager.getObjectByKey(pivotKey);
         //@ts-ignore
         thought.mesh.parent = pivot.mesh;
+    }
+
+    clearAllThoughts(): void {
+
+    }
+
+    generateDummyThoughtData(): Array<any> {
+        const dummyThoughts = [],
+            generalConfig = new Configuration();
+            
+        for (let i = 0; i < generalConfig.demoMode.amountOfDummyThoughts; i++) {
+            dummyThoughts.push({
+                id: `dummy-thought-${  Math.round(Math.random() * 100) }`,
+                body: null,
+                hex: "#000000".replace(/0/g,function(){return (~~(Math.random()*16)).toString(16);}),
+                created_at: null,
+                updated_at: null,
+                rendered: false
+            });
+        }
+
+        return dummyThoughts;
     }
 }
 

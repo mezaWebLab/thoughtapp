@@ -24,7 +24,6 @@ class NetworkManager {
      * @returns {Promise<any>}
      */
     async get(route: string, auth: boolean = false): Promise<any> {
-        console.log(this.auth.getToken());
         const req = await axios.get(this.api(route), auth ? {
             headers: {
                 Authorization: `Bearer ${ this.auth.getToken() }`

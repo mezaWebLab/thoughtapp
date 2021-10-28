@@ -1,8 +1,10 @@
 import Game from "../../../Game/Core";
 import { useEffect } from "react";
 import { css } from "@emotion/css";
+import { NextRouter } from "next/router";
 
 interface Props {
+    router: NextRouter;
     onThoughtClick: Function;
 }
 
@@ -42,16 +44,27 @@ function GameContainer(props: Props) {
         `
     };
 
+    function isRestrictedRoute(pathname: string): boolean {
+        switch (pathname) {
+            case "/":
+                return false;
+            default: 
+                return true;
+        }
+    }
+
     useEffect(() => {
         const canvas = document.getElementById("game-canvas") as HTMLCanvasElement,
             game = new Game(canvas, { 
-                demo: false,
+                demo: !isRestrictedRoute(props.router.pathname),
                 events: {
                     onThoughtClick: props.onThoughtClick
                 } 
             });
 
         game.init();
+
+            console.log(game);
     }, []);
 
     return (
