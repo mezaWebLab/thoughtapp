@@ -8,13 +8,14 @@ export async function middleware(req: NextRequest, ev: NextFetchEvent) {
     const config = new Configuration(),
         token = req.cookies.token;
 
-    if (typeof token === "string") {
-        try {
-            await fetch(ApiUtils.url(config.network.routes.auth), {  headers: { Authorization: `Bearer ${ token }` } });
-        } catch (e) {
-            return NextResponse.redirect("/");
+    if (req.url === "/") {
+        if (typeof token === "string") {
+            try {
+                await fetch(ApiUtils.url(config.network.routes.auth), {  headers: { Authorization: `Bearer ${ token }` } });
+                return NextResponse.redirect("/thoughts");
+            } catch (e) {
+                // nothing.
+            }
         }
-    } else {
-        return NextResponse.redirect("/");
     }
 }
