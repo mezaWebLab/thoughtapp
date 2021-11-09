@@ -2,6 +2,11 @@ import Configuration from "../Configuration";
 import axios from "axios";
 import AuthManager from "./AuthManager";
 
+interface location {
+    latitude: number;
+    longitude: number;
+}
+
 /**
  * Network Manager class
  * Responsible for handling logic used to handle network
@@ -45,6 +50,15 @@ class NetworkManager {
     api(route: string): string {
         return this.config.apiUrl + route;
     } 
+
+    public async getGeneralLocation(): Promise<location> {
+        const req = await axios.get("https://geolocation-db.com/json/");
+
+        return {
+            latitude: req.data.latitude,
+            longitude: req.data.longitude
+        }
+    }
 }
 
 export default NetworkManager;

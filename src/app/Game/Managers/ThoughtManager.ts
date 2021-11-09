@@ -48,26 +48,29 @@ class ThoughtManager {
         if (this.active) this.clearAllThoughts();
 
         switch (this.mode) {
-            case "live":
-                try {
-                    let rawThoughtData = await this.networkManager.get(this.networkManager.config.routes.thoughts, true),
-                        configuredThoughts = [];
+            // case "live":
+            //     try {
+            //         let rawThoughtData = await this.networkManager.get(this.networkManager.config.routes.thoughts, true),
+            //             configuredThoughts = [];
         
-                    for (let i = 0; i < rawThoughtData.length; i++) {
-                        configuredThoughts.push(this.configureThought(rawThoughtData[i]));
-                    }
+            //         for (let i = 0; i < rawThoughtData.length; i++) {
+            //             configuredThoughts.push(this.configureThought(rawThoughtData[i]));
+            //         }
                     
-                    this.createMany(configuredThoughts);
-                    this.renderAllPending();
-                } catch (e) {
-                    console.log(e);
-                    console.log("unable to reach thought server");
-                }
-            break;
+            //         this.createMany(configuredThoughts);
+            //         this.renderAllPending();
+            //     } catch (e) {
+            //         console.log(e);
+            //         console.log("unable to reach thought server");
+            //     }
+            // break;
             case "demo":
                 const dummyThoughtData = this.generateDummyThoughtData();
                 this.createMany(dummyThoughtData);
                 this.renderAllPending();
+            break;
+            default:
+                console.log("Waiting to fetch thoughts..");
             break;
         }
     }
