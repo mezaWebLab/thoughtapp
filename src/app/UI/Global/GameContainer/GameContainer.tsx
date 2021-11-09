@@ -4,6 +4,7 @@ import { css } from "@emotion/css";
 import { NextRouter } from "next/router";
 
 interface Props {
+    onGameLaunch: Function;
     router: NextRouter;
     onThoughtClick: Function;
 }
@@ -48,6 +49,8 @@ function GameContainer(props: Props) {
         switch (pathname) {
             case "/":
                 return false;
+            case "/sign-up":
+                return false;
             default: 
                 return true;
         }
@@ -59,12 +62,11 @@ function GameContainer(props: Props) {
                 demo: !isRestrictedRoute(props.router.pathname),
                 events: {
                     onThoughtClick: props.onThoughtClick
-                } 
+                }
             });
 
         game.init();
-
-            console.log(game);
+        props.onGameLaunch(game);
     }, []);
 
     return (

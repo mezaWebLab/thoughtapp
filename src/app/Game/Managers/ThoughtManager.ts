@@ -65,9 +65,7 @@ class ThoughtManager {
                 }
             break;
             case "demo":
-                console.log("yo");
                 const dummyThoughtData = this.generateDummyThoughtData();
-                console.log(dummyThoughtData);
                 this.createMany(dummyThoughtData);
                 this.renderAllPending();
             break;

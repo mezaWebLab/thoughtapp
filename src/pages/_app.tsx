@@ -1,11 +1,22 @@
 import "src/app/styles/app.scss";
+import 'react-toastify/dist/ReactToastify.css';
 import type { AppProps } from 'next/app'
+import { useState } from "react";
 import { useRouter } from "next/router";
 import GameContainer from "../app/UI/Global/GameContainer/GameContainer";
 import Head from "next/head";
+import { ToastContainer } from 'react-toastify';
 
 function MyApp({ Component, pageProps }: AppProps) {
-  const router = useRouter();
+  const router = useRouter(),
+    [game, setGame] = useState({}),
+    gameContainerProps = {
+      onGameLaunch(game: any) {
+        setGame(game);
+      },
+      router, 
+      onThoughtClick: (thoughtData: any) => router.push(`/thought?id=${ thoughtData.id }&hex=${ thoughtData.hex }`),
+    };
 
   return (
     <div id="app">
@@ -17,12 +28,21 @@ function MyApp({ Component, pageProps }: AppProps) {
           <link 
               rel="icon" 
               href="/favicon.ico" />
+          <link 
+            rel="stylesheet" 
+            href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css" />
           <script src="https://cdn.jsdelivr.net/npm/interactjs/dist/interact.min.js"></script>
       </Head>
-      <GameContainer 
-        router={router}
-        onThoughtClick={(thoughtData: any) => router.push(`/thought?id=${ thoughtData.id }&hex=${ thoughtData.hex }`)} />
-      <Component {...pageProps} />
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={true}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        draggable />
+      <GameContainer {...gameContainerProps} />
+      <Component game={game} {...pageProps} />
     </div>
   );
 }

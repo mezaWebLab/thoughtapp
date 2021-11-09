@@ -9,6 +9,8 @@ interface Props {
     type?: any;
     config?: string;
     styles?: string;
+    disabled?: boolean;
+    onClick?: Function;
 }
 
 export default function Button(props: Props) {
@@ -37,8 +39,9 @@ export default function Button(props: Props) {
 
     return (
         <button 
+            onClick={e => props.onClick ? props.onClick(e) : null}
             type={props.type || 'button'}
-            className={style}>
+            className={`${style}${ props.disabled ? ' disabled' : '' }`}>
             {props.children}
         </button>
     )

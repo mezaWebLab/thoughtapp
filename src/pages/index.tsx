@@ -7,54 +7,59 @@ import { useEffect, useState } from 'react';
 import { css } from "@emotion/css";
 import axios from "axios";
 import ApiUtils from "src/app/Game/Utils/ApiUtils";
+import Header from "src/app/UI/Home/Header";
 import NetworkManager from "src/app/Game/Managers/NetworkManager";
+import { toast } from 'react-toastify';
+import Error from "src/app/modules/Error";
 
 interface credentials {
     usernameOrEmail: string;
     password: string; 
 }
 
-const Home: NextPage = () => {
+const Home: NextPage = (props: any) => {
     const router = useRouter(),
-        [loginInfo, setLoginInfo] = useState({ username: "", email: "", password: "" }),
         [credentials, setCredentials] = useState({ usernameOrEmail: "", password: "" } as credentials),
+        [error, setError] = useState({ enabled: false, message: "" }),
+        [submitted, setSubmitted] = useState(false),
         handlers = {
             async onLoginFormSubmit(e: Event) {
                 e.preventDefault();
-                console.log(credentials);
+                setSubmitted(true);
+
                 try {
                     const res = await axios.post(ApiUtils.url("/user/login"), { 
-                        usernameOrEmail: credentials.usernameOrEmail,
-                        password: credentials.password
-                    }),
+                            usernameOrEmail: credentials.usernameOrEmail,
+                            password: credentials.password
+                        }),
                         networkManager = new NetworkManager();
 
                     networkManager.auth.storeToken(res.data.token);
-                    router.push("/thoughts");
-                } catch (e) {
-                    console.log("wrong");
-                    console.log(e);
+                    toast.success("Signed In! Redirecting..");
+                    setTimeout(() => router.push("/thoughts"), 3000);
+                } catch (e: any) {
+                    const errorCodes = e.response.data;
+                    
+                    if (errorCodes) {
+                        errorCodes.forEach((errorCode: any) => {
+                            const error = new Error(errorCode);
+                            error.notify();
+                        });
+                    }
+
+                    setSubmitted(false);
                 }   
             }
         },
         styles = {
             main: css`
                 padding-bottom : 100px;
-
-                header {
-                    text-align  : center;
-                    margin-top  : 100px;
-
-                    h1 {
-                        text-shadow : 0px 0px 23px #B45D5D;
-                    }
-
-                    p {
-                        font-size : 20px;
-                    }
-                }
             `
-        }
+        };
+
+    useEffect(() => {
+        console.log(props.game);
+    }, [props.game]);
 
     return (
         <DefaultLayout>
@@ -70,16 +75,13 @@ const Home: NextPage = () => {
             <div
                 className={styles.main} 
                 id="home">
-                <header>
-                    <div className="container">
-                        <h1>ThoughtApp</h1>
-                        <p>See what others are thinking</p>
-                    </div>
-                </header>
+                <Header />
                 <main>
                     <div className="container">
                         <LoginForm 
                             {...credentials}
+                            error={error}
+                            submitted={submitted}
                             onSubmit={(e: Event) => handlers.onLoginFormSubmit(e)}
                             onChange={(data: credentials) => setCredentials({ usernameOrEmail: data.usernameOrEmail, password: data.password })} />
                     </div>
