@@ -1,11 +1,8 @@
 import Configuration from "../Configuration";
 import axios from "axios";
 import AuthManager from "./AuthManager";
+import LocationManager from "./LocationManager";
 
-interface location {
-    latitude: number;
-    longitude: number;
-}
 
 /**
  * Network Manager class
@@ -16,11 +13,13 @@ interface location {
 class NetworkManager {
     config: any;
     auth: AuthManager;
+    location: LocationManager;
 
     constructor() {
         const config = new Configuration();
         this.config = config.network;
         this.auth = new AuthManager(config);
+        this.location = new LocationManager(config);
     }
 
     /**
@@ -38,6 +37,21 @@ class NetworkManager {
         return req.data;
     }
 
+    async post(route: string, data: any = {}, auth: boolean = false): Promise<any> {
+        try {
+            const req = await axios.post(this.api(route), data, auth ? {
+                headers: {
+                    Authorization: `Bearer ${ this.auth.getToken() }`
+                }
+            } : {});
+    
+            return req.data;
+        } catch (e) {
+            return false;
+        }
+        
+    }
+
     async fetchThoughtById(id: number): Promise<any> {
         return await this.get("/thought-by-id?id=" + id);
     }
@@ -50,15 +64,6 @@ class NetworkManager {
     api(route: string): string {
         return this.config.apiUrl + route;
     } 
-
-    public async getGeneralLocation(): Promise<location> {
-        const req = await axios.get("https://geolocation-db.com/json/");
-
-        return {
-            latitude: req.data.latitude,
-            longitude: req.data.longitude
-        }
-    }
 }
 
 export default NetworkManager;

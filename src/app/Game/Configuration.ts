@@ -21,7 +21,8 @@ class Configuration {
         routes: {
             auth: "/auth",
             thoughts: "/thoughts",
-            login: "/user/login"
+            login: "/user/login",
+            nearbyThoughts: "/nearby-thoughts"
         }
     }
 

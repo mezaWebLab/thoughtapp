@@ -9,6 +9,7 @@ export default function ThoughtsPage(props: any) {
         const networkManager = new NetworkManager();
 
         networkManager
+            .location
             .getGeneralLocation()
             .then(location => {
                 setUserCoordinates({ latitude: location.latitude, longitude: location.longitude });
@@ -20,15 +21,21 @@ export default function ThoughtsPage(props: any) {
     }
 
     useEffect(() => {
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition((pos: GeolocationPosition) => {
-                console.log(pos);
+        if (props.game) {
+            const networkManager = new NetworkManager();
+
+            networkManager.location.getPreciseLocation((pos: GeolocationPosition) => {
                 setUserCoordinates({ latitude: pos.coords.latitude, longitude: pos.coords.longitude });
+                setCoordinatesLoaded(true);
             }, () => getGeneralLocation());
-        } else {
-            getGeneralLocation();
         }
     }, [props.game]);
+
+    useEffect(() => {
+        if (coordinatesLoaded && props.game) {
+            props.game.thoughtManager.fetchThoughtsByCoords(userCoordinates);
+        }
+    }, [coordinatesLoaded]);
     
     return (
         <div>

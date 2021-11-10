@@ -73,7 +73,7 @@ function GameContainer(props: Props) {
         <div
             className={styles.main} 
             id="game-container">
-            <div></div>
+            {/* <div></div> */}
             <canvas id="game-canvas"></canvas>
         </div>
     );

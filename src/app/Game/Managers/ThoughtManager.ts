@@ -7,6 +7,7 @@ import Configuration from "../Configuration";
 import * as BB from "babylonjs";
 import ThoughtUtils from "../Utils/ThoughtUtils";
 import ObjectManager from "./ObjectManager";
+import Geolocation from "../Interfaces/Geolocation";
 import CalcUtils from "../Utils/CalcUtils";
 
 /**
@@ -144,6 +145,21 @@ class ThoughtManager {
         }
 
         return dummyThoughts;
+    }
+
+    async fetchThoughtsByCoords(coords: Geolocation): Promise<any> {
+        const data = await this.networkManager.post(this.networkManager.config.routes.nearbyThoughts, coords, true);
+
+        if (data.length > 0) {
+            const thoughts: any = [];
+
+            data.forEach((thought: any) => {
+                thoughts.push(this.configureThought(thought));
+            });
+
+            this.createMany(thoughts);
+            this.renderAllPending();
+        }
     }
 }
 
