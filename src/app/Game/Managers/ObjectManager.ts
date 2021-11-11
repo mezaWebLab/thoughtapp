@@ -48,6 +48,11 @@ class ObjectManager {
     getAll(): Array<any> {
         return this.objects;
     }
+
+    flushAll(): void {
+        this.objects.forEach(thought => thought.mesh?.dispose());
+        this.objects = [];
+    }
 }
 
 export default ObjectManager;

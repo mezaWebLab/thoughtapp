@@ -25,6 +25,7 @@ class ThoughtManager {
     networkManager: NetworkManager;
     objectManager: ObjectManager;
     thoughts: Array<Thought>;
+    pivots: Array<any>;
     utils: ThoughtUtils;
     active: boolean;
 
@@ -36,6 +37,7 @@ class ThoughtManager {
         this.networkManager = networkManager;
         this.objectManager = objectManager;
         this.thoughts = [];
+        this.pivots = [];
         this.utils = new ThoughtUtils();
         this.active = false;
     }
@@ -160,6 +162,11 @@ class ThoughtManager {
             this.createMany(thoughts);
             this.renderAllPending();
         }
+    }
+
+    flushAll(): void {
+        this.thoughts.forEach(thought => thought.mesh?.dispose());
+        this.thoughts = [];
     }
 }
 

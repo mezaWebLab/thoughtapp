@@ -18,7 +18,10 @@ class LocationManager {
 
         return {
             latitude: req.data.latitude,
-            longitude: req.data.longitude
+            longitude: req.data.longitude,
+            city: req.data.city,
+            countryCode: req.data.country_code,
+            state: req.data.state
         }
     }
 

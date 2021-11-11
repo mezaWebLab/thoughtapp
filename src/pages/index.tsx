@@ -35,11 +35,12 @@ const Home: NextPage = (props: any) => {
                         networkManager = new NetworkManager();
 
                     networkManager.auth.storeToken(res.data.token.token);
-                    
                     toast.success("Signed In! Redirecting..", { autoClose: 3000 });
                     
-                    setTimeout(() => {
-                        router.push("/thoughts")
+                    setTimeout(() => { 
+                        router.push("/thoughts");
+                        props.game.thoughtManager.objectManager.flushAll();
+                        props.game.thoughtManager.flushAll();
                     }, 3000);
                 } catch (e: any) {
                     const errorCodes = e.response.data;
