@@ -6,6 +6,7 @@ import { useRouter } from "next/router";
 import GameContainer from "../app/UI/Global/GameContainer/GameContainer";
 import Head from "next/head";
 import { ToastContainer } from 'react-toastify';
+import Script from 'next/script'
 
 function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter(),
@@ -31,7 +32,7 @@ function MyApp({ Component, pageProps }: AppProps) {
           <link 
             rel="stylesheet" 
             href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css" />
-          <script src="https://cdn.jsdelivr.net/npm/interactjs/dist/interact.min.js"></script>
+          <Script src="https://cdn.jsdelivr.net/npm/interactjs/dist/interact.min.js"></Script>
       </Head>
       <ToastContainer
         position="top-right"

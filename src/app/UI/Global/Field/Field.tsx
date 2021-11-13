@@ -36,6 +36,8 @@ export default function Field(props: Props) {
                 }
             `
         },
+        // todo
+        // @ts-ignore
         currentTheme = props.theme ? themes[props.theme] : themes.default;
     
     return (
